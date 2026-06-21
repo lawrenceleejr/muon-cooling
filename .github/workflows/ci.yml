@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Pure-Python tests for the optimization framework (metrics, templating).
+  # No G4beamline needed, so this is fast and runs everywhere.
+  # ---------------------------------------------------------------------------
+  framework-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r optimization/requirements.txt pytest
+      - name: Run unit tests
+        run: cd optimization && python -m pytest tests/ -v
+
+  # ---------------------------------------------------------------------------
+  # Smoke-test the HFOFO g4beamline configuration inside the published image
+  # built by lawrenceleejr/g4beamline. Runs a short MC and an end-to-end
+  # evaluation of the objective so we catch breakage in the physics card.
+  # ---------------------------------------------------------------------------
+  hfofo-simulation:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/lawrenceleejr/g4beamline:main
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Point g4bl at the in-image Geant4 datasets
+        # g4bl otherwise launches the headless-hanging g4bldata GUI to "find"
+        # them; the .data file makes it use the datasets already in the image.
+        run: echo "/usr/local/share/geant4/install/4.11.0.2/share/Geant4-11.0.2/data" > /opt/g4beamline/build/.data
+
+      - name: Run a short HFOFO simulation
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          cp -r hfofo /tmp/hfofo_ci && cd /tmp/hfofo_ci
+          sed -i 's/^param nEvents=.*/param nEvents=10/' hfofo.in
+          /opt/g4beamline/build/bin/g4bl hfofo.in | tee g4bl.log
+          grep -q "simulation complete" g4bl.log
+          test -s out1.txt && test -s out31.txt
+          echo "HFOFO simulation OK"
+
+      - name: Install Python deps and evaluate the objective end-to-end
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          pip install --quiet -r optimization/requirements.txt || \
+            pip install --quiet --break-system-packages -r optimization/requirements.txt
+          cd optimization
+          python - <<'PY'
+          import os
+          from muopt import G4blRunner, ObjectiveConfig, ParameterSpace, evaluate
+          space = ParameterSpace.from_config({
+              "BLS": {"low": 18, "high": 25, "nominal": 21.4},
+              "Grad": {"low": 18, "high": 32, "nominal": 25},
+          })
+          # native g4bl is on PATH inside the image
+          runner = G4blRunner(backend="native", g4bl_bin="/opt/g4beamline/build/bin/g4bl",
+                              timeout=600)
+          cfg = ObjectiveConfig(config_dir=os.path.abspath("../hfofo"), n_events=10)
+          res = evaluate(space.nominal(), cfg, runner)
+          print("ok=", res.ok, "T=", res.transmission, "score=", res.score, res.message)
+          assert res.ok, f"objective evaluation failed: {res.message}"
+          PY

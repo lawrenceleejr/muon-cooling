@@ -1,1 +1,0 @@
-Digitized data from Yuri's 2015 paper

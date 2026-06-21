@@ -1,1 +1,0 @@
-Last available version of Yuri's G4beamline configuration + intended input file (initial.dat)

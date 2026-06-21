@@ -1,0 +1,61 @@
+# HFOFO cooling-channel optimization configuration.
+#
+# Edit `parameters` to choose what the optimizer tunes and over what range, and
+# `objective` to shape the merit (cooling vs. transmission). Run with:
+#
+#     python run_optimization.py --config config.yaml
+#
+# See README.md for the methodology.
+
+# --- the g4beamline configuration to optimize --------------------------------
+config_dir: ../hfofo          # directory containing hfofo.in + include files
+input_file: hfofo.in
+
+# --- execution backend -------------------------------------------------------
+runner:
+  backend: auto               # auto | docker | native
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 1200               # seconds per simulation
+
+# --- parameters the optimizer searches ---------------------------------------
+# Each maps to a `param NAME=...` line in hfofo.in. low/high bound the search;
+# nominal is the published design value (used as a reference / warm start).
+parameters:
+  BLS:                        # overall solenoid focusing-field scale
+    low: 18.0
+    high: 25.0
+    nominal: 21.4
+  Grad:                       # main-cavity RF gradient (MV/m)
+    low: 18.0
+    high: 32.0
+    nominal: 25.0
+  Grad0:                      # matching-cavity RF gradient (MV/m)
+    low: 14.0
+    high: 26.0
+    nominal: 20.0
+  delf:                       # SolPos/SolNeg current asymmetry
+    low: -0.10
+    high: 0.10
+    nominal: 0.0
+
+# --- objective / figure of merit ---------------------------------------------
+objective:
+  n_events: 300               # muons per trial (raise for less noise, more cost)
+  p0: 247.5                   # reference momentum (MeV/c)
+  Bz0: 2.8                    # on-axis B for canonical-momentum subtraction (T)
+  p_low: 100.0                # momentum window for "good" muons (MeV/c)
+  p_high: 400.0
+  transmission_floor: 0.05    # soft-penalize designs that lose almost all beam
+  transmission_weight: 1.0    # merit = T^w_T * (eps6d_in/eps6d_out)^w_cool
+  cooling_weight: 1.0
+  entrance_detector: out1.txt
+  exit_detector: out31.txt
+
+# --- optimizer ---------------------------------------------------------------
+optimizer:
+  method: bayes               # bayes (Optuna TPE) | gp (skopt GP) | random
+  n_trials: 60
+  n_jobs: 1                   # parallel evaluations (>1 needs more CPU/RAM)
+  seed: 0
+
+out_dir: results/run

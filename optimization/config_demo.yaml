@@ -1,0 +1,40 @@
+config_dir: ../hfofo
+input_file: hfofo.in
+runner:
+  backend: docker
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 600
+parameters:
+  BLS:
+    low: 18.0
+    high: 25.0
+    nominal: 21.4
+  Grad:
+    low: 18.0
+    high: 32.0
+    nominal: 25.0
+  Grad0:
+    low: 14.0
+    high: 26.0
+    nominal: 20.0
+  delf:
+    low: -0.10
+    high: 0.10
+    nominal: 0.0
+objective:
+  n_events: 200
+  p0: 247.5
+  Bz0: 2.8
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.05
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  entrance_detector: out1.txt
+  exit_detector: out31.txt
+optimizer:
+  method: bayes
+  n_trials: 48
+  n_jobs: 3
+  seed: 0
+out_dir: results/bayes_demo
