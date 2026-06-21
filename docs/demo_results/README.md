@@ -52,11 +52,19 @@ the two under the density-gain merit.
 4. The optimizer's drift toward low gradient/field maximizes *this* merit on
    *this* injection; it is not yet a recommendation for the physical design.
 
+## Which optimizer is most efficient?
+
+See [`efficiency.md`](efficiency.md) for a head-to-head of TPE vs. GP vs. random
+search at a fixed evaluation budget — the "how to optimize most efficiently"
+experiment. Short version: both Bayesian optimizers beat random search, which
+stalls because it never models the objective.
+
 ## Reproduce
 
 ```bash
 cd optimization
-python run_optimization.py --config config_demo.yaml
+python run_optimization.py --config config_demo.yaml      # the 48-trial run above
+python compare_optimizers.py --n-trials 25 --n-events 150  # the optimizer comparison
 ```
 
 (`config_demo.yaml` is the demo configuration; `config.yaml` is the documented
