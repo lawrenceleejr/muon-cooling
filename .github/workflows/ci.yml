@@ -54,21 +54,22 @@ jobs:
           test -s out1.txt && test -s out31.txt
           echo "HFOFO simulation OK"
 
-      - name: Install Python deps and evaluate the objective end-to-end
+      - name: Evaluate the objective end-to-end (native g4bl backend)
         env:
           QT_QPA_PLATFORM: offscreen
         run: |
-          pip install --quiet -r optimization/requirements.txt || \
-            pip install --quiet --break-system-packages -r optimization/requirements.txt
+          # The runner/metrics/objective path only needs numpy; keep this light
+          # so the container job stays fast and robust.
+          pip install --quiet numpy || pip install --quiet --break-system-packages numpy
           cd optimization
-          python - <<'PY'
+          python3 - <<'PY'
           import os
           from muopt import G4blRunner, ObjectiveConfig, ParameterSpace, evaluate
           space = ParameterSpace.from_config({
               "BLS": {"low": 18, "high": 25, "nominal": 21.4},
               "Grad": {"low": 18, "high": 32, "nominal": 25},
           })
-          # native g4bl is on PATH inside the image
+          # native g4bl lives at this path inside the image
           runner = G4blRunner(backend="native", g4bl_bin="/opt/g4beamline/build/bin/g4bl",
                               timeout=600)
           cfg = ObjectiveConfig(config_dir=os.path.abspath("../hfofo"), n_events=10)
