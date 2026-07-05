@@ -52,6 +52,7 @@ def build(config_path, overrides):
         transmission_floor=float(ocfg.get("transmission_floor", 0.0)),
         transmission_weight=float(ocfg.get("transmission_weight", 1.0)),
         cooling_weight=float(ocfg.get("cooling_weight", 1.0)),
+        trans_entrance_detector=ocfg.get("trans_entrance_detector", ""),
     )
 
     opt = cfg.get("optimizer", {})
@@ -60,6 +61,7 @@ def build(config_path, overrides):
         n_trials=overrides.get("n_trials") or int(opt.get("n_trials", 60)),
         n_jobs=int(opt.get("n_jobs", 1)),
         seed=int(opt.get("seed", 0)),
+        storage=opt.get("storage"),
     )
     out_dir = os.path.normpath(os.path.join(base, overrides.get("out_dir")
                                             or cfg.get("out_dir", "results/run")))

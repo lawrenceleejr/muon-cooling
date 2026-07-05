@@ -99,7 +99,8 @@ def _selected_muons(data, p_low, p_high):
     return sel, p
 
 
-def compute_emittance(data, p0=247.5, Bz0=2.8, p_low=100.0, p_high=400.0):
+def compute_emittance(data, p0=247.5, Bz0=2.8, p_low=100.0, p_high=400.0,
+                      f_rf=0.325, fold_rf=True):
     """Normalized 6D emittance from the covariance of the canonical phase space.
 
     Follows the standard HFOFO analysis: build the 6-vector
@@ -114,6 +115,11 @@ def compute_emittance(data, p0=247.5, Bz0=2.8, p_low=100.0, p_high=400.0):
     their product. ``Bz0`` enters only through the canonical correction and is
     applied identically at every plane, so cooling *ratios* are insensitive to
     its precise value.
+
+    ``fold_rf`` wraps arrival times into a single RF bucket (period 1/f_rf,
+    f_rf in GHz) about the beam's circular-mean phase. Without this, a beam
+    spread over several buckets gets a bucket-to-bucket "length" that dwarfs the
+    true bunch length and corrupts the eigen-decomposition.
 
     Returns an :class:`EmittanceResult`, or ``None`` if fewer than 6 muons pass
     the momentum window (covariance ill-defined / meaningless statistics).
@@ -130,6 +136,13 @@ def compute_emittance(data, p0=247.5, Bz0=2.8, p_low=100.0, p_high=400.0):
     pz = data["pz"][sel]
     t = data["t"][sel]
     ptot = p[sel]
+
+    if fold_rf and f_rf > 0:
+        omega = 2.0 * np.pi * f_rf  # rad/ns
+        phase = omega * t
+        # circular mean of the RF phase, so the fold is centered on the bunch
+        phi0 = np.arctan2(np.mean(np.sin(phase)), np.mean(np.cos(phase)))
+        t = (np.mod(phase - phi0 + np.pi, 2.0 * np.pi) - np.pi) / omega
 
     m = MUON_MASS
     gamma0 = np.sqrt(1.0 + (p0 / m) ** 2)

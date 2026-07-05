@@ -36,8 +36,13 @@ PENALTY = 50.0  # -score returned for an infeasible/failed evaluation
 class ObjectiveConfig:
     config_dir: str                       # directory holding hfofo.in + includes
     input_file: str = "hfofo.in"
-    entrance_detector: str = "out1.txt"   # first full-aperture period detector
-    exit_detector: str = "out31.txt"      # last period detector
+    entrance_detector: str = "out1.txt"   # cooling reference plane (emittance in)
+    exit_detector: str = "out31.txt"      # exit plane (emittance out)
+    # Transmission may use a different entrance plane than the emittance ratio
+    # (e.g. count survival from period 1 but measure cooling from period 2 to
+    # avoid crediting entrance-mismatch scraping as "cooling"). Defaults to the
+    # same planes.
+    trans_entrance_detector: str = ""
     n_events: int = 200
     p0: float = 247.5
     Bz0: float = 2.8
@@ -91,7 +96,12 @@ def evaluate(values, cfg: ObjectiveConfig, runner: G4blRunner) -> EvalResult:
         emit_in = metrics.compute_emittance(ent, cfg.p0, cfg.Bz0, cfg.p_low, cfg.p_high)
         emit_out = metrics.compute_emittance(ex, cfg.p0, cfg.Bz0, cfg.p_low, cfg.p_high)
 
-        n_in = metrics.count_muons(ent, cfg.p_low, cfg.p_high)
+        if cfg.trans_entrance_detector:
+            tent = metrics.read_detector(
+                os.path.join(workdir, cfg.trans_entrance_detector))
+        else:
+            tent = ent
+        n_in = metrics.count_muons(tent, cfg.p_low, cfg.p_high)
         n_out = metrics.count_muons(ex, cfg.p_low, cfg.p_high)
         trans = metrics.transmission(n_in, n_out)
 

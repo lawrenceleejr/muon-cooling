@@ -35,7 +35,11 @@ class Trial:
 
 
 class TrialLogger:
-    """Append-only CSV + JSONL log of every evaluation."""
+    """Append-only CSV + JSONL log of every evaluation.
+
+    If a trials.csv already exists (e.g. resuming an interrupted run), new rows
+    are appended after the existing ones and numbering continues from there.
+    """
 
     def __init__(self, out_dir, param_names):
         os.makedirs(out_dir, exist_ok=True)
@@ -48,8 +52,13 @@ class TrialLogger:
              "eps6d_in", "eps6d_out", "n_in", "n_out", "ok", "wall_seconds"]
             + [f"p_{n}" for n in param_names]
         )
-        with open(self.csv_path, "w", newline="") as fh:
-            csv.writer(fh).writerow(self._fields)
+        self.n_existing = 0
+        if os.path.exists(self.csv_path):
+            with open(self.csv_path) as fh:
+                self.n_existing = max(0, sum(1 for _ in fh) - 1)
+        else:
+            with open(self.csv_path, "w", newline="") as fh:
+                csv.writer(fh).writerow(self._fields)
 
     def log(self, trial: Trial):
         r = trial.result
@@ -91,8 +100,12 @@ def run_optimization(space, obj_cfg, runner, out_dir, method="bayes",
     Returns ``(best_trial, logger)``.
     """
     logger = TrialLogger(out_dir, space.names)
-    state = {"count": 0, "best": None, "verbose": verbose}
+    state = {"count": logger.n_existing, "best": None, "verbose": verbose}
     _eval = _make_eval(space, obj_cfg, runner, logger, state)
+
+    if storage == "auto":
+        # per-run sqlite study next to the trial log => interrupted runs resume
+        storage = "sqlite:///" + os.path.join(os.path.abspath(out_dir), "study.db")
 
     if method == "bayes":
         _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir)

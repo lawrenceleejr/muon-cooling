@@ -21,10 +21,18 @@
 # Grad0  : RF gradient in the matching cavities     (MV/m)   -- nominal 20
 # delf   : SolPos/SolNeg current asymmetry (dimensionless)   -- nominal 0
 # nEvents: number of muons to track                          -- set by runner
+# pitchFactor : scale on the periodic-section solenoid tilt   -- nominal 1
+# dtRF        : global RF phase offset (ns; T_RF = 3.077 ns)   -- nominal 0
+# wedgeScale  : scale on all LiH wedge widths (cooling material)-- nominal 1
+# rngSeed     : Geant4 random seed (fixed => common random numbers)
 param BLS=21.4
 param Grad=25
 param Grad0=20
 param delf=0
+param pitchFactor=1.0
+param dtRF=0.0
+param wedgeScale=1.0
+param rngSeed=1
 param nEvents=100
 ### ----------------------------------------------------------------------------
 
@@ -33,6 +41,8 @@ param worldMaterial=GH2
 
 param pi=3.1415926
 
+randomseed Set $rngSeed
+
 physics QGSP_BIC
 
 param zshift=60
@@ -40,15 +50,13 @@ param period=4200 # HFOFO period
 
 param beamstart=-700 # from the rotator solenoid exit at z=0
 #beam ascii file=initial.dat beamZ=$beamstart # user provided file with particle data
-beam gaussian particle=mu+ nEvents=$nEvents beamZ=$beamstart \
-    sigmaX=80.0 sigmaY=80.0 sigmaXp=0.1 sigmaYp=0.1 \
-    meanMomentum=247.5 sigmaP=100.0 meanT=0.0 sigmaT=0.0
+beam ascii file=initial.dat beamZ=$beamstart nEvents=$nEvents
 
 param TRF=1/325*10^3
 param beamtime=-0.671 # average time of mu+ in initial.dat modulo RF period TRF
 # if there is no mu+ take mu- and add TRF/2
 
-param toffs0=$beamtime-$beamstart/275.89-.07 # time needed to travel from beamZ to 0
+param toffs0=$beamtime-$beamstart/275.89-.07+$dtRF # time needed to travel from beamZ to 0
 
 param toffs1=$toffs0-.061-.0026+.0115+.006 # timing on the beam core done iteratively
 param toffs2=$toffs1-.064+.149-.0052-.0029
@@ -77,7 +85,7 @@ solenoid RotSol coilName=kat0 current=11.37 kill=1
 coil kat11 innerRadius=420 outerRadius=600 length=300 nSheets=10 maxR=360 maxZ=6000 dR=15 dZ=15 \
 tolerance=0.003
 
-param pitch=-0.0025*180/$pi
+param pitch=-0.0025*180/$pi*$pitchFactor
 param cur0=4.421*$BLS
 param curpl=$cur0*(1+$delf/2) curmn=-$cur0*(1-$delf/2)
 param cur1=4.421*10.98 cur2=-4.421*17.89 cur3=4.421*19.64 cur4=-4.421*21.12 # entrance
