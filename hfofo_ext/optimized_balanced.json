@@ -1,0 +1,10 @@
+{
+  "_comment": "Recommended 'balanced' HFOFO design from the optimization campaign (docs/campaign). Delivers 1.33x the 6D phase-space brightness of nominal: exit 6D emittance 160 vs 243 mm^3 (1.5x lower) at 88% of nominal transmission. Apply with: python ../optimization/apply_design.py hfofo/hfofo.in hfofo/optimized_balanced.json  (or edit the 7 OPTIMIZER PARAMETERS lines in hfofo.in by hand).",
+  "BLS": 22.38,
+  "Grad": 26.7,
+  "Grad0": 22.1,
+  "delf": 0.045,
+  "pitchFactor": 1.06,
+  "dtRF": -0.127,
+  "wedgeScale": 2.87
+}

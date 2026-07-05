@@ -1,0 +1,40 @@
+# Phase F: 9-parameter brightness optimization including two matching-section
+# knobs (entCur = entrance taper current scale, entTilt = entrance tilt scale).
+# Hypothesis: correcting the injection match lets thick-wedge designs cool hard
+# without the transmission/heating penalty that capped the 7-param search.
+config_dir: ../hfofo_ext
+input_file: hfofo.in
+runner:
+  backend: docker
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 1200
+parameters:
+  BLS:           {low: 21.0, high: 26.0, nominal: 22.4}
+  Grad:          {low: 20.0, high: 30.0, nominal: 26.0}
+  Grad0:         {low: 18.0, high: 30.0, nominal: 22.0}
+  delf:          {low: 0.0,  high: 0.12, nominal: 0.045}
+  pitchFactor:   {low: 0.70, high: 1.30, nominal: 1.06}
+  dtRF:          {low: -0.25, high: 0.20, nominal: -0.10}
+  wedgeScale:    {low: 1.50, high: 3.50, nominal: 2.9}
+  entCur:        {low: 0.80, high: 1.30, nominal: 1.0}
+  entTilt:       {low: 0.50, high: 1.40, nominal: 1.0}
+objective:
+  mode: brightness
+  n_events: 500
+  p0: 247.5
+  Bz0: 2.8
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.40
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  entrance_detector: out2.txt
+  exit_detector: out31.txt
+  trans_entrance_detector: out1.txt
+optimizer:
+  method: bayes
+  n_trials: 100
+  n_jobs: 4
+  seed: 41
+  storage: auto
+out_dir: results/phaseF
