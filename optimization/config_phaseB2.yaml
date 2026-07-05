@@ -13,7 +13,7 @@ parameters:
   delf:          {low: 0.0,  high: 0.12, nominal: 0.04}
   pitchFactor:   {low: 0.40, high: 1.10, nominal: 0.65}
   dtRF:          {low: -0.20, high: 0.25, nominal: 0.05}
-  wedgeScale:    {low: 1.00, high: 2.20, nominal: 1.50}
+  wedgeScale:    {low: 1.00, high: 3.00, nominal: 1.80}
 objective:
   n_events: 400
   p0: 247.5
