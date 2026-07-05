@@ -1,0 +1,7 @@
+{
+  "nominal":    {"BLS": 21.4,  "Grad": 25.0, "Grad0": 20.0, "delf": 0.0,   "pitchFactor": 1.0,  "dtRF": 0.0,   "wedgeScale": 1.0},
+  "balanced":   {"BLS": 22.38, "Grad": 26.7, "Grad0": 22.1, "delf": 0.045, "pitchFactor": 1.06, "dtRF": -0.127,"wedgeScale": 2.87},
+  "brightA":    {"BLS": 21.26, "Grad": 27.3, "Grad0": 29.0, "delf": 0.081, "pitchFactor": 0.83, "dtRF": 0.225, "wedgeScale": 2.56},
+  "lowwedge":   {"BLS": 23.58, "Grad": 20.2, "Grad0": 23.0, "delf": 0.011, "pitchFactor": 0.96, "dtRF": -0.07, "wedgeScale": 1.18},
+  "midcool":    {"BLS": 21.7,  "Grad": 21.0, "Grad0": 27.0, "delf": 0.037, "pitchFactor": 0.65, "dtRF": -0.06, "wedgeScale": 1.89}
+}

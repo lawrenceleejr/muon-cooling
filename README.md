@@ -59,6 +59,17 @@ back from the detector output, and combines them into a single merit. See
 [`optimization/README.md`](optimization/README.md) and
 [`docs/optimization.md`](docs/optimization.md).
 
+## Optimization campaign result
+
+A full 7-parameter optimization campaign (~400 g4beamline runs) is written up in
+[`docs/campaign/`](docs/campaign/). It found a design (**`balanced`**) that
+delivers **1.33× the 6D phase-space brightness** of the published lattice —
+exit 6D emittance 160 vs 243 mm³ (1.5× lower) at 88% of nominal transmission,
+validated across three Monte-Carlo seeds. Its parameters are in
+[`hfofo/optimized_balanced.json`](hfofo/optimized_balanced.json). The report also
+documents why several designs that looked far better under naive metrics turned
+out to be artifacts of the wrong reference plane or low statistics.
+
 ## References
 
 - Paper: <https://inspirehep.net/literature/1678715>

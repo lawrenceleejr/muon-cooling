@@ -39,6 +39,29 @@ and computes transmission (`N_out/N_in`) and the 6D normalized emittance at each
 plane. `mu_plus_beam.txt` is a finer `zntuple` sampling the beam every period for
 diagnostics / plotting.
 
+
+## Optimized "balanced" design
+
+A 7-parameter optimization campaign (see [`../docs/campaign/`](../docs/campaign/))
+found a design that delivers **1.33× the 6D phase-space brightness** of the
+published lattice — exit 6D emittance 160 vs 243 mm³ (1.5× lower) at 88% of the
+nominal transmission. Its parameters are in
+[`optimized_balanced.json`](optimized_balanced.json); apply them with:
+
+```bash
+python ../optimization/apply_design.py hfofo.in optimized_balanced.json
+```
+
+| knob | nominal | balanced |
+|------|:-------:|:--------:|
+| `BLS` | 21.4 | 22.38 |
+| `Grad` | 25 | 26.7 |
+| `Grad0` | 20 | 22.1 |
+| `delf` | 0 | 0.045 |
+| `pitchFactor` | 1.0 | 1.06 |
+| `dtRF` | 0 | −0.127 |
+| `wedgeScale` | 1.0 | 2.87 |
+
 ## Tunable parameters
 
 The `OPTIMIZER PARAMETERS` block at the top of `hfofo.in`:
