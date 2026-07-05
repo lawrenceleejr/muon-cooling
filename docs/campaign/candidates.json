@@ -1,0 +1,8 @@
+{
+  "nominal":              {"BLS": 21.4,  "Grad": 25.0, "Grad0": 20.0, "delf": 0.0,   "pitchFactor": 1.0,  "dtRF": 0.0,    "wedgeScale": 1.0},
+  "transmission_matched": {"BLS": 21.94, "Grad": 27.5, "Grad0": 23.7, "delf": 0.047, "pitchFactor": 0.99, "dtRF": -0.110, "wedgeScale": 1.11},
+  "balanced":             {"BLS": 22.38, "Grad": 26.7, "Grad0": 22.1, "delf": 0.045, "pitchFactor": 1.06, "dtRF": -0.127, "wedgeScale": 2.87},
+  "high_cooling":         {"BLS": 21.89, "Grad": 25.9, "Grad0": 23.5, "delf": 0.097, "pitchFactor": 0.50, "dtRF": 0.021,  "wedgeScale": 2.82},
+  "max_cooling":          {"BLS": 23.70, "Grad": 20.4, "Grad0": 27.6, "delf": 0.079, "pitchFactor": 0.43, "dtRF": 0.016,  "wedgeScale": 2.71},
+  "extreme_cooling":      {"BLS": 25.50, "Grad": 23.1, "Grad0": 28.9, "delf": 0.100, "pitchFactor": 0.89, "dtRF": -0.018, "wedgeScale": 2.19}
+}
