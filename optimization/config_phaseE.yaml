@@ -1,0 +1,38 @@
+# Phase E: optimize directly on the honest exit-brightness metric
+# (T / eps6D_exit against the common injected beam), warm-started from all
+# prior sims re-scored on brightness. Transmission floor keeps it useful.
+config_dir: ../hfofo
+input_file: hfofo.in
+runner:
+  backend: docker
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 1200
+parameters:
+  BLS:           {low: 21.0, high: 26.0, nominal: 22.4}
+  Grad:          {low: 20.0, high: 30.0, nominal: 26.0}
+  Grad0:         {low: 18.0, high: 30.0, nominal: 22.0}
+  delf:          {low: 0.0,  high: 0.12, nominal: 0.045}
+  pitchFactor:   {low: 0.70, high: 1.30, nominal: 1.06}
+  dtRF:          {low: -0.25, high: 0.20, nominal: -0.10}
+  wedgeScale:    {low: 1.50, high: 3.50, nominal: 2.9}
+objective:
+  mode: brightness
+  n_events: 500
+  p0: 247.5
+  Bz0: 2.8
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.40      # stay in a useful-transmission regime
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  entrance_detector: out2.txt   # (unused by brightness mode, kept for logging)
+  exit_detector: out31.txt
+  trans_entrance_detector: out1.txt
+optimizer:
+  method: bayes
+  n_trials: 90
+  n_jobs: 4
+  seed: 31
+  storage: auto
+  warm_jsonl: results/all_prior_trials.jsonl
+out_dir: results/phaseE

@@ -122,3 +122,21 @@ def test_rf_folding_removes_bucket_spread():
     # ...and with folding off, the bucket spread must inflate the emittance
     e_nofold = metrics.compute_emittance(spread, Bz0=0.0, fold_rf=False)
     assert e_nofold.eps_6d > 5 * e_base.eps_6d
+
+
+def test_score_modes():
+    """Brightness mode ranks by T/eps_out; density-gain by T*eps_in/eps_out."""
+    from muopt.objective import ObjectiveConfig, score_from_metrics
+    bright = ObjectiveConfig(config_dir=".", mode="brightness")
+    dens = ObjectiveConfig(config_dir=".", mode="density_gain")
+    # brightness ignores eps_in; a lower exit emittance must score higher
+    s_lo = score_from_metrics(0.5, None, 100.0, bright)
+    s_hi = score_from_metrics(0.5, None, 200.0, bright)
+    assert s_lo > s_hi
+    # brightness feasible without eps_in; density-gain is not
+    assert score_from_metrics(0.5, None, 100.0, dens) is None
+    # density-gain rewards larger eps_in/eps_out
+    assert score_from_metrics(0.5, 1000.0, 100.0, dens) > score_from_metrics(0.5, 500.0, 100.0, dens)
+    # transmission floor penalizes low T
+    assert score_from_metrics(0.01, None, 100.0, ObjectiveConfig(config_dir=".", mode="brightness", transmission_floor=0.3)) \
+         < score_from_metrics(0.5, None, 100.0, bright)

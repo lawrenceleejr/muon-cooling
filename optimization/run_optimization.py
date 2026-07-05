@@ -53,6 +53,7 @@ def build(config_path, overrides):
         transmission_weight=float(ocfg.get("transmission_weight", 1.0)),
         cooling_weight=float(ocfg.get("cooling_weight", 1.0)),
         trans_entrance_detector=ocfg.get("trans_entrance_detector", ""),
+        mode=ocfg.get("mode", "density_gain"),
     )
 
     opt = cfg.get("optimizer", {})
@@ -63,6 +64,8 @@ def build(config_path, overrides):
         seed=int(opt.get("seed", 0)),
         storage=opt.get("storage"),
     )
+    if opt.get("warm_jsonl"):
+        opt_kw["warm_jsonl"] = os.path.normpath(os.path.join(base, opt["warm_jsonl"]))
     out_dir = os.path.normpath(os.path.join(base, overrides.get("out_dir")
                                             or cfg.get("out_dir", "results/run")))
     return space, obj_cfg, runner, opt_kw, out_dir

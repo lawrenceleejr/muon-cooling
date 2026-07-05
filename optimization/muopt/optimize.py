@@ -94,17 +94,30 @@ def _make_eval(space: ParameterSpace, obj_cfg: ObjectiveConfig, runner: G4blRunn
 
 
 def run_optimization(space, obj_cfg, runner, out_dir, method="bayes",
-                     n_trials=60, n_jobs=1, seed=0, verbose=True, storage=None):
+                     n_trials=60, n_jobs=1, seed=0, verbose=True, storage=None,
+                     warm_jsonl=None):
     """Drive ``method`` over ``space`` for ``n_trials`` evaluations.
 
-    Returns ``(best_trial, logger)``.
+    ``warm_jsonl`` optionally warm-starts the TPE study from a prior run's
+    trials.jsonl, re-scored under the *current* objective mode (so a brightness
+    study can reuse density-gain sims). Returns ``(best_trial, logger)``.
     """
     logger = TrialLogger(out_dir, space.names)
     state = {"count": logger.n_existing, "best": None, "verbose": verbose}
     _eval = _make_eval(space, obj_cfg, runner, logger, state)
 
+    def rescore(rec):
+        from .objective import score_from_metrics
+        r = rec.get("result", {})
+        if not r.get("ok"):
+            return None
+        s = score_from_metrics(r.get("transmission", 0.0),
+                               r.get("eps6d_in"), r.get("eps6d_out"), obj_cfg)
+        return None if s is None else -s
+
     if method == "bayes":
-        _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir)
+        _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir,
+                    warm_jsonl=warm_jsonl, rescore=rescore)
     elif method == "gp":
         _run_skopt(space, _eval, n_trials, seed)
     elif method == "random":
@@ -138,12 +151,17 @@ def make_journal_storage(out_dir):
     return JournalStorage(JournalFileBackend(path))
 
 
-def warm_start_from_jsonl(study, space, jsonl_path):
+def warm_start_from_jsonl(study, space, jsonl_path, rescore=None):
     """Seed an empty study with completed trials from a previous trials.jsonl.
 
     Lets a crashed/killed run resume with all prior (expensive) evaluations
     informing the sampler, without re-running a single simulation. Trials whose
     parameter set doesn't match the current space are skipped.
+
+    ``rescore(rec)`` optionally recomputes the loss from a record's stored
+    metrics -- used to reuse prior sims under a *different* objective (e.g. the
+    same runs re-scored on exit brightness). If it returns None the trial is
+    skipped; if ``rescore`` is None the record's own logged score is used.
     """
     import optuna
     from optuna.distributions import FloatDistribution, IntDistribution
@@ -167,7 +185,12 @@ def warm_start_from_jsonl(study, space, jsonl_path):
                 if not all(dists[k]._contains(dists[k].to_internal_repr(v))
                            for k, v in params.items()):
                     continue  # outside the (possibly re-shaped) search box
-                loss = -float(rec["result"]["score"])
+                if rescore is not None:
+                    loss = rescore(rec)
+                    if loss is None:
+                        continue
+                else:
+                    loss = -float(rec["result"]["score"])
             except (KeyError, ValueError, json.JSONDecodeError):
                 continue
             study.add_trial(optuna.trial.create_trial(
@@ -176,7 +199,8 @@ def warm_start_from_jsonl(study, space, jsonl_path):
     return n_added
 
 
-def _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir):
+def _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir,
+                warm_jsonl=None, rescore=None):
     import optuna
     optuna.logging.set_verbosity(optuna.logging.WARNING)
 
@@ -198,8 +222,10 @@ def _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir):
         storage=storage, load_if_exists=bool(storage),
         study_name="hfofo",
     )
+    # Prefer an explicit external warm-start file (re-scored) over the in-dir log.
     n_warm = warm_start_from_jsonl(study, space,
-                                   os.path.join(out_dir, "trials.jsonl"))
+                                   warm_jsonl or os.path.join(out_dir, "trials.jsonl"),
+                                   rescore=rescore if warm_jsonl else None)
     if n_warm:
         print(f"warm-started study with {n_warm} previously evaluated trials")
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
