@@ -1,0 +1,32 @@
+# Phase B2: multi-objective Pareto mapping (transmission vs cooling), NSGA-II,
+# same extended box as B1. Run via pareto.py.
+config_dir: ../hfofo
+input_file: hfofo.in
+runner:
+  backend: docker
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 1200
+parameters:
+  BLS:           {low: 21.0, high: 26.0, nominal: 23.0}
+  Grad:          {low: 18.0, high: 28.0, nominal: 22.0}
+  Grad0:         {low: 20.0, high: 30.0, nominal: 25.0}
+  delf:          {low: 0.0,  high: 0.12, nominal: 0.04}
+  pitchFactor:   {low: 0.40, high: 1.10, nominal: 0.65}
+  dtRF:          {low: -0.20, high: 0.25, nominal: 0.05}
+  wedgeScale:    {low: 1.00, high: 2.20, nominal: 1.50}
+objective:
+  n_events: 400
+  p0: 247.5
+  Bz0: 2.8
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.0        # no floor: let the front span the full range
+  trans_entrance_detector: out1.txt
+  entrance_detector: out2.txt
+  exit_detector: out31.txt
+optimizer:
+  method: bayes                  # unused by pareto.py (NSGA-II fixed)
+  n_trials: 96
+  n_jobs: 4
+  seed: 23
+out_dir: results/phaseB2

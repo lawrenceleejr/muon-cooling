@@ -164,6 +164,9 @@ def warm_start_from_jsonl(study, space, jsonl_path):
                 params = {k: v for k, v in rec["params"].items() if k in dists}
                 if set(params) != set(dists):
                     continue
+                if not all(dists[k]._contains(dists[k].to_internal_repr(v))
+                           for k, v in params.items()):
+                    continue  # outside the (possibly re-shaped) search box
                 loss = -float(rec["result"]["score"])
             except (KeyError, ValueError, json.JSONDecodeError):
                 continue
