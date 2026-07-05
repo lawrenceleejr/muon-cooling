@@ -1,0 +1,56 @@
+# Phase A of the cooling-performance campaign: broad 7-parameter Bayesian sweep.
+# Realistic ICOOL beam, fixed seed (common random numbers), 400 events/trial.
+config_dir: ../hfofo
+input_file: hfofo.in
+runner:
+  backend: docker
+  image: ghcr.io/lawrenceleejr/g4beamline:main
+  timeout: 1200
+parameters:
+  BLS:                  # solenoid focusing-field scale
+    low: 19.0
+    high: 24.0
+    nominal: 21.4
+  Grad:                 # main-cavity RF gradient (MV/m)
+    low: 18.0
+    high: 30.0
+    nominal: 25.0
+  Grad0:                # matching-cavity RF gradient (MV/m)
+    low: 14.0
+    high: 26.0
+    nominal: 20.0
+  delf:                 # SolPos/SolNeg current asymmetry
+    low: -0.06
+    high: 0.06
+    nominal: 0.0
+  pitchFactor:          # periodic-section solenoid tilt scale
+    low: 0.5
+    high: 1.5
+    nominal: 1.0
+  dtRF:                 # global RF phase offset (ns), T_RF = 3.077 ns
+    low: -0.6
+    high: 0.6
+    nominal: 0.0
+  wedgeScale:           # LiH wedge width scale (absorber material budget)
+    low: 0.5
+    high: 1.6
+    nominal: 1.0
+objective:
+  n_events: 400
+  p0: 247.5
+  Bz0: 2.8
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.20      # keep designs in a useful-transmission regime
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  trans_entrance_detector: out1.txt   # survival counted over the full channel
+  entrance_detector: out2.txt         # cooling referenced from period 2
+  exit_detector: out31.txt
+optimizer:
+  method: bayes
+  n_trials: 120
+  n_jobs: 4
+  seed: 7
+  storage: auto                 # sqlite in out_dir => resumable
+out_dir: results/phaseA

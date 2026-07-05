@@ -106,3 +106,19 @@ def test_apply_parameters_missing_raises():
         except KeyError:
             return
         raise AssertionError("expected KeyError for missing param")
+
+
+def test_rf_folding_removes_bucket_spread():
+    """A beam identical up to whole-RF-period time shifts must have the same
+    emittance as the single-bucket beam when folding is on."""
+    T_RF = 1.0 / 0.325  # ns
+    base = _gaussian_beam(2000, 15, 0.015, 15, 0.015, 0.15, 0.02, seed=5)
+    spread = {k: (v.copy() if hasattr(v, "copy") else v) for k, v in base.items()}
+    rng = np.random.default_rng(6)
+    spread["t"] = base["t"] + T_RF * rng.integers(-3, 4, size=len(base["t"]))
+    e_base = metrics.compute_emittance(base, Bz0=0.0)
+    e_spread = metrics.compute_emittance(spread, Bz0=0.0)
+    assert abs(e_spread.eps_6d - e_base.eps_6d) / e_base.eps_6d < 1e-6
+    # ...and with folding off, the bucket spread must inflate the emittance
+    e_nofold = metrics.compute_emittance(spread, Bz0=0.0, fold_rf=False)
+    assert e_nofold.eps_6d > 5 * e_base.eps_6d
