@@ -93,7 +93,13 @@ class G4blRunner:
             self.image,
             "bash", "-lc", inner,
         ]
-        return self._exec(cmd, workdir)
+        res = self._exec(cmd, workdir)
+        # The managed environment occasionally kills the docker daemon. That is
+        # a transient infrastructure fault, not a bad design point, so detect it,
+        # try to bring the daemon back, and re-run once before giving up.
+        if not res.success and _is_daemon_down(res.log) and _try_start_daemon():
+            res = self._exec(cmd, workdir)
+        return res
 
     def _run_native(self, workdir, input_file):
         env = os.environ.copy()
@@ -123,3 +129,36 @@ def detect_backend():
     if shutil.which("g4bl"):
         return "native"
     return "docker"
+
+
+_DAEMON_LOCK = None
+
+
+def _is_daemon_down(log):
+    return "Cannot connect to the Docker daemon" in log or \
+           "Is the docker daemon running" in log or \
+           "docker.sock" in log
+
+
+def _try_start_daemon(wait=12.0):
+    """Best-effort restart of a dead dockerd (managed env kills it sometimes).
+
+    Serialized so parallel workers don't race to launch several daemons.
+    Returns True once `docker info` succeeds.
+    """
+    import threading
+    import time
+    global _DAEMON_LOCK
+    if _DAEMON_LOCK is None:
+        _DAEMON_LOCK = threading.Lock()
+    with _DAEMON_LOCK:
+        if subprocess.run(["docker", "info"], capture_output=True).returncode == 0:
+            return True
+        subprocess.Popen("sudo dockerd >/tmp/dockerd.log 2>&1",
+                         shell=True, start_new_session=True)
+        deadline = time.time() + wait
+        while time.time() < deadline:
+            time.sleep(1.0)
+            if subprocess.run(["docker", "info"], capture_output=True).returncode == 0:
+                return True
+        return False

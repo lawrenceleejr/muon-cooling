@@ -69,6 +69,39 @@ def main():
     study = optuna.create_study(directions=["maximize", "maximize"],
                                 sampler=sampler, storage=storage,
                                 study_name="hfofo_pareto", load_if_exists=True)
+
+    # Warm-start from prior single-objective runs: reuse their (T, cooling)
+    # without re-simulating. Only points inside the current box are added.
+    warm = os.environ.get("PARETO_WARM_JSONL", "")
+    if warm and len(study.trials) == 0 and os.path.exists(warm):
+        from optuna.distributions import FloatDistribution
+        dists = {p.name: FloatDistribution(p.low, p.high, log=p.log) for p in space}
+        n_added = 0
+        with open(warm) as fh:
+            for line in fh:
+                try:
+                    rec = json.loads(line)
+                    params = {k: v for k, v in rec["params"].items() if k in dists}
+                    if set(params) != set(dists):
+                        continue
+                    if not all(dists[k]._contains(dists[k].to_internal_repr(v))
+                               for k, v in params.items()):
+                        continue
+                    r = rec["result"]
+                    if not r.get("ok"):
+                        continue
+                    cool = r.get("cooling_factor")
+                    trans = r.get("transmission")
+                    if cool is None or trans is None or not math.isfinite(cool) or cool <= 0:
+                        continue
+                    study.add_trial(optuna.trial.create_trial(
+                        params=params, distributions=dists,
+                        values=[trans, math.log10(max(cool, 1e-3))]))
+                    n_added += 1
+                except (KeyError, ValueError, json.JSONDecodeError):
+                    continue
+        print(f"warm-started Pareto study with {n_added} prior evaluations")
+
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
 
     front = []
