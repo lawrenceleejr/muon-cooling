@@ -63,7 +63,8 @@ def main():
         # maximize both; log-cooling keeps the second objective well-scaled
         return res.transmission, math.log10(max(cool, 1e-3))
 
-    storage = "sqlite:///" + os.path.join(os.path.abspath(out_dir), "study.db")
+    from muopt.optimize import make_journal_storage
+    storage = make_journal_storage(out_dir)
     sampler = optuna.samplers.NSGAIISampler(population_size=args.population, seed=seed)
     study = optuna.create_study(directions=["maximize", "maximize"],
                                 sampler=sampler, storage=storage,

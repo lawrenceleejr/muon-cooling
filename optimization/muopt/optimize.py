@@ -103,10 +103,6 @@ def run_optimization(space, obj_cfg, runner, out_dir, method="bayes",
     state = {"count": logger.n_existing, "best": None, "verbose": verbose}
     _eval = _make_eval(space, obj_cfg, runner, logger, state)
 
-    if storage == "auto":
-        # per-run sqlite study next to the trial log => interrupted runs resume
-        storage = "sqlite:///" + os.path.join(os.path.abspath(out_dir), "study.db")
-
     if method == "bayes":
         _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir)
     elif method == "gp":
@@ -128,6 +124,55 @@ def run_optimization(space, obj_cfg, runner, out_dir, method="bayes",
     return best, logger
 
 
+def make_journal_storage(out_dir):
+    """File-based Optuna storage that tolerates concurrent workers.
+
+    SQLite storage deadlocks under n_jobs > 1 ("database is locked"); the
+    journal backend is append-only and safe for threads and processes.
+    """
+    import optuna
+    from optuna.storages import JournalStorage
+    from optuna.storages.journal import JournalFileBackend
+    os.makedirs(os.path.abspath(out_dir), exist_ok=True)
+    path = os.path.join(os.path.abspath(out_dir), "journal.log")
+    return JournalStorage(JournalFileBackend(path))
+
+
+def warm_start_from_jsonl(study, space, jsonl_path):
+    """Seed an empty study with completed trials from a previous trials.jsonl.
+
+    Lets a crashed/killed run resume with all prior (expensive) evaluations
+    informing the sampler, without re-running a single simulation. Trials whose
+    parameter set doesn't match the current space are skipped.
+    """
+    import optuna
+    from optuna.distributions import FloatDistribution, IntDistribution
+
+    if len(study.trials) > 0 or not os.path.exists(jsonl_path):
+        return 0
+    dists = {}
+    for p in space:
+        if p.integer:
+            dists[p.name] = IntDistribution(int(p.low), int(p.high))
+        else:
+            dists[p.name] = FloatDistribution(p.low, p.high, log=p.log)
+    n_added = 0
+    with open(jsonl_path) as fh:
+        for line in fh:
+            try:
+                rec = json.loads(line)
+                params = {k: v for k, v in rec["params"].items() if k in dists}
+                if set(params) != set(dists):
+                    continue
+                loss = -float(rec["result"]["score"])
+            except (KeyError, ValueError, json.JSONDecodeError):
+                continue
+            study.add_trial(optuna.trial.create_trial(
+                params=params, distributions=dists, value=loss))
+            n_added += 1
+    return n_added
+
+
 def _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir):
     import optuna
     optuna.logging.set_verbosity(optuna.logging.WARNING)
@@ -141,12 +186,19 @@ def _run_optuna(space, _eval, n_trials, n_jobs, seed, storage, out_dir):
                 raw[p.name] = trial.suggest_float(p.name, p.low, p.high, log=p.log)
         return _eval(raw).loss  # minimize loss = -score
 
+    if storage == "auto":
+        storage = make_journal_storage(out_dir)
+
     sampler = optuna.samplers.TPESampler(seed=seed, multivariate=True, group=True)
     study = optuna.create_study(
         direction="minimize", sampler=sampler,
         storage=storage, load_if_exists=bool(storage),
         study_name="hfofo",
     )
+    n_warm = warm_start_from_jsonl(study, space,
+                                   os.path.join(out_dir, "trials.jsonl"))
+    if n_warm:
+        print(f"warm-started study with {n_warm} previously evaluated trials")
     study.optimize(objective, n_trials=n_trials, n_jobs=n_jobs)
 
 
