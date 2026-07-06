@@ -37,7 +37,8 @@ def main():
     names = [i[2] for i in items]
     gains = [i[0] for i in items]
     errs = [i[1] for i in items]
-    colors = ["#C23B22" if n == "balanced" else
+    best_name = max(items, key=lambda i: i[0])[2]
+    colors = ["#C23B22" if n == best_name else
               ("#1f3b73" if n == "nominal" else "#8a8a8a") for n in names]
 
     fig, ax = plt.subplots(figsize=(8, 4.6))

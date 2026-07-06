@@ -40,27 +40,32 @@ plane. `mu_plus_beam.txt` is a finer `zntuple` sampling the beam every period fo
 diagnostics / plotting.
 
 
-## Optimized "balanced" design
+## Optimized design
 
-A 7-parameter optimization campaign (see [`../docs/campaign/`](../docs/campaign/))
-found a design that delivers **1.33× the 6D phase-space brightness** of the
-published lattice — exit 6D emittance 160 vs 243 mm³ (1.5× lower) at 88% of the
-nominal transmission. Its parameters are in
-[`optimized_balanced.json`](optimized_balanced.json); apply them with:
+An optimization campaign (see [`../docs/campaign/`](../docs/campaign/)) found a
+design (**`brightE2`**) that delivers **1.80× the 6D phase-space brightness** of
+the published lattice — exit 6D emittance 104 vs 243 mm³ (2.3× lower) at 78% of
+nominal transmission. Apply it with:
 
 ```bash
-python ../optimization/apply_design.py hfofo.in optimized_balanced.json
+python ../optimization/apply_design.py hfofo.in optimized.json
 ```
 
-| knob | nominal | balanced |
-|------|:-------:|:--------:|
-| `BLS` | 21.4 | 22.38 |
-| `Grad` | 25 | 26.7 |
-| `Grad0` | 20 | 22.1 |
-| `delf` | 0 | 0.045 |
-| `pitchFactor` | 1.0 | 1.06 |
-| `dtRF` | 0 | −0.127 |
-| `wedgeScale` | 1.0 | 2.87 |
+| knob | nominal | recommended (`brightE2`) | conservative (`balanced`) |
+|------|:-------:|:------------------------:|:-------------------------:|
+| `BLS` | 21.4 | 21.13 | 22.38 |
+| `Grad` | 25 | 23.58 | 26.7 |
+| `Grad0` | 20 | 22.07 | 22.1 |
+| `delf` | 0 | 0.036 | 0.045 |
+| `pitchFactor` | 1.0 | 0.848 | 1.06 |
+| `dtRF` | 0 | −0.024 | −0.127 |
+| `wedgeScale` | 1.0 | 3.27 | 2.87 |
+| **brightness gain** | 1.00× | **1.80×** | 1.33× |
+| transmission | 0.64 | 0.50 | 0.56 |
+
+`brightE2` needs a ~3.3× thicker LiH wedge; if that is impractical the
+`balanced` design ([`optimized_conservative.json`](optimized_conservative.json))
+gives 1.33× at a thinner wedge and higher transmission.
 
 ## Tunable parameters
 

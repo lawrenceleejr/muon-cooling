@@ -1,0 +1,5 @@
+{
+  "_comment": "Conservative alternative ('balanced'): 1.33x brightness (exit 6D emittance 160 vs 243 mm^3) at higher transmission T=0.56 (88% of nominal) and a thinner wedge (2.87 vs 3.27). Prefer this if transmission or absorber thickness is the binding constraint.",
+  "BLS": 22.38, "Grad": 26.7, "Grad0": 22.1, "delf": 0.045,
+  "pitchFactor": 1.06, "dtRF": -0.127, "wedgeScale": 2.87
+}

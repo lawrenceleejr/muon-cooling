@@ -61,14 +61,17 @@ back from the detector output, and combines them into a single merit. See
 
 ## Optimization campaign result
 
-A full 7-parameter optimization campaign (~400 g4beamline runs) is written up in
-[`docs/campaign/`](docs/campaign/). It found a design (**`balanced`**) that
-delivers **1.33× the 6D phase-space brightness** of the published lattice —
-exit 6D emittance 160 vs 243 mm³ (1.5× lower) at 88% of nominal transmission,
-validated across three Monte-Carlo seeds. Its parameters are in
-[`hfofo/optimized_balanced.json`](hfofo/optimized_balanced.json). The report also
-documents why several designs that looked far better under naive metrics turned
-out to be artifacts of the wrong reference plane or low statistics.
+A full optimization campaign (~500 g4beamline runs) is written up in
+[`docs/campaign/`](docs/campaign/). It found a design (**`brightE2`**) that
+delivers **1.80× the 6D phase-space brightness** of the published lattice —
+exit 6D emittance 104 vs 243 mm³ (2.3× lower) at 78% of nominal transmission,
+validated across three Monte-Carlo seeds. Parameters:
+[`hfofo/optimized.json`](hfofo/optimized.json) (with a conservative 1.33×
+alternative in [`hfofo/optimized_conservative.json`](hfofo/optimized_conservative.json)).
+The design was found by re-optimizing directly on exit brightness after the
+report showed the intuitive "cooling factor" merit is misleading — and it
+documents why several designs that looked far better under naive metrics were
+artifacts of the wrong reference plane or low statistics.
 
 ## References
 

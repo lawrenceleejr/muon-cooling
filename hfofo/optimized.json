@@ -1,0 +1,10 @@
+{
+  "_comment": "RECOMMENDED optimized HFOFO design ('brightE2') from the optimization campaign (docs/campaign). Delivers 1.80x the delivered 6D phase-space brightness of nominal: exit 6D emittance 104 vs 243 mm^3 (2.3x lower) at T=0.50 (78% of nominal). Found by re-optimizing directly on exit brightness (Phase E). Apply: python ../optimization/apply_design.py hfofo.in optimized.json",
+  "BLS": 21.13,
+  "Grad": 23.58,
+  "Grad0": 22.07,
+  "delf": 0.036,
+  "pitchFactor": 0.848,
+  "dtRF": -0.024,
+  "wedgeScale": 3.27
+}

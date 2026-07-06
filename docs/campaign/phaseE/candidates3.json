@@ -1,0 +1,7 @@
+{
+  "nominal":   {"BLS": 21.4,  "Grad": 25.0,  "Grad0": 20.0,  "delf": 0.0,   "pitchFactor": 1.0,   "dtRF": 0.0,   "wedgeScale": 1.0},
+  "balanced":  {"BLS": 22.38, "Grad": 26.7,  "Grad0": 22.1,  "delf": 0.045, "pitchFactor": 1.06,  "dtRF": -0.127,"wedgeScale": 2.87},
+  "brightE1":  {"BLS": 22.08, "Grad": 23.24, "Grad0": 23.56, "delf": 0.005, "pitchFactor": 1.054, "dtRF": 0.098, "wedgeScale": 2.60},
+  "brightE2":  {"BLS": 21.13, "Grad": 23.58, "Grad0": 22.07, "delf": 0.036, "pitchFactor": 0.848, "dtRF": -0.024,"wedgeScale": 3.27},
+  "brightE3":  {"BLS": 21.05, "Grad": 23.47, "Grad0": 25.39, "delf": 0.014, "pitchFactor": 0.772, "dtRF": 0.052, "wedgeScale": 3.33}
+}
