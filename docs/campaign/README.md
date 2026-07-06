@@ -70,10 +70,13 @@ brightness is the one to trust for the final ranking.)
    showed is the one that matters), 90 trials warm-started from prior sims
    re-scored, then re-validate the winners at high statistics. This is where the
    best design was found.
-5. **Phase D** — full-channel profiling and this report.
+5. **Phase F** — a 9-parameter search adding the entrance matching knobs
+   (`entCur`, `entTilt`) on an extended config, to test whether correcting the
+   injection match unlocks more cooling. It did not (see §3).
+6. **Phase D** — full-channel profiling and this report.
 
 Every simulation ran in the published `ghcr.io/lawrenceleejr/g4beamline` image;
-the whole campaign is ~500 g4beamline runs, orchestrated and logged by the
+the whole campaign is ~600 g4beamline runs, orchestrated and logged by the
 framework.
 
 ---
@@ -103,9 +106,22 @@ The winning designs come from Phase E (re-optimization on exit brightness).
 | brightE1 | 22.1 / 23.2 / 23.6 / 0.005 / 1.05 / +0.10 / 2.60 | 0.539 ± 0.002 | 155 ± 21 | 1.31× |
 | nominal | 21.4 / 25.0 / 20.0 / 0.000 / 1.00 / 0.00 / 1.00 | 0.641 ± 0.004 | 243 ± 37 | 1.00× |
 
-The two Phase-E winners cut the exit 6D emittance by **2.3×** (243 → ~105 mm³);
-even after the transmission cost they deliver **1.7–1.8× the 6D brightness**.
+The two Phase-E winners cut the exit 6D emittance by **~2.3×** (243 → ~100 mm³);
+even after the transmission cost they deliver **~1.8× the 6D brightness**
+(`brightE2` measured at 1.80× and 2.00× in two independent 3-seed validation
+sets — exit emittance 94–105 mm³ — so ~1.9× with the seed-to-seed spread).
 `brightE3` has the tightest error bars (±4 mm³) if robustness is paramount.
+
+**Phase F — adding entrance-matching freedom does not help.** A 9-parameter
+search that additionally tuned the entrance taper current (`entCur`) and
+entrance tilt (`entTilt`) was run on the brightness metric, seeded from the
+`brightE2` basin. Its best design (`brightF1` = `brightE2` with `entTilt` = 0.7)
+looked ~36% brighter at 500-event screening, but at 1500 events × 3 seeds it
+landed at exit emittance **96.7 ± 1.1 mm³ — statistically identical to
+`brightE2`'s 94.0 ± 14.6**. The entrance-matching knobs give no robust gain:
+`brightE2` sits at the practical optimum of this parameterization, and further
+improvement would require a richer parameterization (per-cavity RF timing,
+per-section wedge taper) or relaxing the transmission floor.
 
 ### Designs that did *not* pan out (why validation and re-optimization matter)
 
