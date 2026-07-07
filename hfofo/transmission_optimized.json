@@ -1,0 +1,5 @@
+{
+  "_comment": "Transmission-favoring HFOFO design from the transmission optimization (docs/campaign/losses). Same-seed comparison (400 events): raw muon transmission 0.686 vs nominal 0.653 (+5%), achieved via a larger RF bucket (Grad~30) + thin wedge (0.61, less scattering/decay) + reduced tilt -- NOT aperture opening. Trades cooling down (~39x vs ~64x): this is the transmission END of the transmission-vs-cooling tradeoff. Multi-seed high-stat validation was blocked by docker instability in-session; treat the +5% as indicative. Apply: python ../optimization/apply_design.py hfofo.in transmission_optimized.json",
+  "BLS": 20.14, "Grad": 29.95, "Grad0": 21.66, "delf": 0.018,
+  "pitchFactor": 0.804, "dtRF": 0.016, "wedgeScale": 0.606, "irisScale": 1.113
+}

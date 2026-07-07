@@ -56,12 +56,24 @@ decisive:
 | nominal + thin wedge + open irises | 0.649 |
 | best found (thin wedge + open iris + retune) | ~0.656 — within MC noise |
 
-**Opening the RF irises does not increase transmission, and no combination of the
-global knobs beats nominal by more than Monte-Carlo noise (~±0.02).** The lost
-muons are *not* being scraped at the iris edge — they are outside the channel's
-**stable dynamic + momentum acceptance** and drift out regardless of physical
-aperture. Transmission of the periodic channel is at its acceptance ceiling
-(~0.65) for this beam.
+**Opening the RF irises does not increase transmission.** The best design found
+(`transmission_optimized.json`) reaches raw transmission **0.686 vs nominal 0.653
+(+5 %, same-seed / common-random-number comparison, 400 events)** — but it gets
+there via a **larger RF bucket (Grad ≈ 30) + a thin wedge (0.61, less scattering
+and less momentum loss → less decay) + reduced tilt**, *not* by opening the iris
+(`irisScale` ≈ 1.1, barely moved). The gain is small and comes **at the cost of
+cooling** (~39× vs ~64×): it is the transmission end of the transmission-vs-cooling
+trade-off, the mirror image of `brightE2`. The lost muons are *not* scraped at
+the iris edge — they are outside the channel's **stable dynamic + momentum
+acceptance** and drift out regardless of physical aperture. Transmission of the
+periodic channel is near its acceptance ceiling (~0.65–0.69) for this beam.
+
+> The full multi-seed high-statistics validation of the +5 % design was blocked
+> by container/docker instability in this session (the daemon was being killed
+> every 1–4 minutes, resetting long runs); two 500-event nominal points that did
+> complete (T = 0.650, 0.655) reproduce the nominal value, and the +5 % is a
+> like-for-like same-seed result, but treat its magnitude as indicative pending a
+> clean multi-seed rerun.
 
 ### So how *do* you increase transmission?
 
