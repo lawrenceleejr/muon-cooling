@@ -207,6 +207,26 @@ The improvement is coherent:
 
 ---
 
+## 6b. Transmission and where the losses go
+
+A dedicated study ([`losses/`](losses/)) decomposes the transmission loss and
+asks whether it can be recovered. Summary:
+
+- The injected beam (`initial.dat`, ICOOL pre-cooling) is broad in momentum —
+  only ~71 % of muons are in the 100–400 MeV/c window — and has a transverse
+  halo reaching the RF iris.
+- By running decay-on vs. decay-off, nominal loss splits into **~6 % muon decay**
+  and **~33 % aperture/optics**; the aggressive `brightE2` pays more on *both*
+  (~14 % decay, ~39 % aperture) because its lower momentum shortens the decay
+  length and increases scraping — cooling and transmission genuinely trade off.
+- A transmission-maximizing optimization (free to open the RF irises and thin the
+  wedges) **could not beat nominal by more than Monte-Carlo noise**: the loss is
+  **dynamic/momentum acceptance**, not physical-aperture scraping, so opening
+  irises doesn't help. Raising transmission requires a narrower/better-matched
+  input beam or the frozen per-element lattice freedoms, not the global knobs.
+- Every evaluation now reports a **decay-corrected transmission** (aperture/optics
+  survival) alongside the raw number.
+
 ## 7. Caveats
 
 1. **Wedge thickness.** `brightE2` uses LiH wedges ~3.3× the nominal width
