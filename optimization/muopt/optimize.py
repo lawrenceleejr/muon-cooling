@@ -48,8 +48,9 @@ class TrialLogger:
         self.csv_path = os.path.join(out_dir, "trials.csv")
         self.jsonl_path = os.path.join(out_dir, "trials.jsonl")
         self._fields = (
-            ["number", "score", "loss", "transmission", "cooling_factor",
-             "eps6d_in", "eps6d_out", "n_in", "n_out", "ok", "wall_seconds"]
+            ["number", "score", "loss", "transmission", "transmission_corrected",
+             "decay_survival", "cooling_factor", "eps6d_in", "eps6d_out",
+             "n_in", "n_out", "ok", "wall_seconds"]
             + [f"p_{n}" for n in param_names]
         )
         self.n_existing = 0
@@ -62,7 +63,8 @@ class TrialLogger:
 
     def log(self, trial: Trial):
         r = trial.result
-        row = [trial.number, r.score, r.loss, r.transmission, r.cooling_factor,
+        row = [trial.number, r.score, r.loss, r.transmission,
+               r.transmission_corrected, r.decay_survival, r.cooling_factor,
                r.eps6d_in, r.eps6d_out, r.n_in, r.n_out, int(r.ok), r.wall_seconds]
         row += [trial.params.get(n) for n in self.param_names]
         with open(self.csv_path, "a", newline="") as fh:

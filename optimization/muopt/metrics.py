@@ -20,6 +20,7 @@ import numpy as np
 # Physical constants
 MUON_MASS = 105.6583745  # MeV/c^2
 C_LIGHT = 299.792458     # mm/ns
+MUON_LIFETIME = 2196.9811  # ns (proper lifetime, tau_mu)
 
 # Standard G4beamline BLTrackFile column order.
 _COLUMNS = ["x", "y", "z", "px", "py", "pz", "t",
@@ -77,6 +78,67 @@ def transmission(n_in, n_out):
     if n_in <= 0:
         return 0.0
     return float(n_out) / float(n_in)
+
+
+def decay_survival(data, p_low=100.0, p_high=400.0, tau=MUON_LIFETIME):
+    """Mean muon-decay survival probability at a plane, from recorded times.
+
+    Each surviving muon carries its lab time-of-flight ``t`` and momentum. The
+    proper time elapsed is ``t / gamma`` (gamma from the muon's total momentum),
+    so its decay survival is ``exp(-t / (gamma * tau))``. Averaging over muons in
+    the momentum window estimates the fraction of the *injected* population that
+    would survive decay to this plane -- valid because time-of-flight is set by
+    the (RF-synchronous) longitudinal dynamics and is only weakly correlated with
+    which muons decay. This lets a *single* run report a decay-corrected
+    transmission without a separate decay-off simulation.
+
+    Returns a survival fraction in (0, 1], or 1.0 if no muons qualify.
+    """
+    sel, p = _selected_muons(data, p_low, p_high)
+    if not np.any(sel):
+        return 1.0
+    t = data["t"][sel]
+    ptot = p[sel]
+    gamma = np.sqrt(1.0 + (ptot / MUON_MASS) ** 2)
+    proper_time = np.abs(t) / gamma
+    return float(np.mean(np.exp(-proper_time / tau)))
+
+
+def decay_corrected_transmission(data_in, data_out, p_low=100.0, p_high=400.0,
+                                 tau=MUON_LIFETIME):
+    """Transmission relative to the muons that had *not* yet decayed.
+
+    T_corrected = T_raw / S, where S is the decay-only survival between the two
+    planes. S is estimated from the *transit* time (mean t at the exit minus mean
+    t at the entrance -- so any absolute injection-time offset cancels) and the
+    path-averaged Lorentz factor:
+
+        S = exp( -(<t>_out - <t>_in) / (gamma_bar * tau) )
+
+    gamma_bar averages the mean momentum of the two planes (muons cool, so using
+    the endpoint gamma alone would over-count decay). This removes the
+    near-irreducible decay term and reports the aperture/optics-limited survival
+    -- the quantity a lattice change can actually improve.
+
+    Returns (T_raw, T_corrected, S).
+    """
+    n_in = count_muons(data_in, p_low, p_high)
+    n_out = count_muons(data_out, p_low, p_high)
+    t_raw = transmission(n_in, n_out)
+
+    si, pi = _selected_muons(data_in, p_low, p_high)
+    so, po = _selected_muons(data_out, p_low, p_high)
+    if not np.any(si) or not np.any(so):
+        return t_raw, t_raw, 1.0
+    t_in = np.mean(data_in["t"][si])
+    t_out = np.mean(data_out["t"][so])
+    g_in = np.mean(np.sqrt(1.0 + (pi[si] / MUON_MASS) ** 2))
+    g_out = np.mean(np.sqrt(1.0 + (po[so] / MUON_MASS) ** 2))
+    gamma_bar = 0.5 * (g_in + g_out)
+    transit = t_out - t_in
+    s = float(np.exp(-transit / (gamma_bar * tau))) if transit > 0 else 1.0
+    t_corr = (t_raw / s) if s > 0 else t_raw
+    return t_raw, t_corr, s
 
 
 @dataclasses.dataclass

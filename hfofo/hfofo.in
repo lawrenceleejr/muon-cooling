@@ -24,6 +24,7 @@
 # pitchFactor : scale on the periodic-section solenoid tilt   -- nominal 1
 # dtRF        : global RF phase offset (ns; T_RF = 3.077 ns)   -- nominal 0
 # wedgeScale  : scale on all LiH wedge widths (cooling material)-- nominal 1
+# irisScale   : scale on the small RF irises RFC1(250mm)+RFC2(200mm) -- nominal 1
 # rngSeed     : Geant4 random seed (fixed => common random numbers)
 param BLS=21.4
 param Grad=25
@@ -32,6 +33,7 @@ param delf=0
 param pitchFactor=1.0
 param dtRF=0.0
 param wedgeScale=1.0
+param irisScale=1.0
 param rngSeed=1
 param nEvents=100
 ### ----------------------------------------------------------------------------
@@ -50,7 +52,7 @@ param period=4200 # HFOFO period
 
 param beamstart=-700 # from the rotator solenoid exit at z=0
 #beam ascii file=initial.dat beamZ=$beamstart # user provided file with particle data
-beam ascii file=initial.dat beamZ=$beamstart nEvents=$nEvents
+beam ascii file=initial_shuffled.dat beamZ=$beamstart nEvents=$nEvents  # representative (momentum-shuffled) sample of initial.dat
 
 param TRF=1/325*10^3
 param beamtime=-0.671 # average time of mu+ in initial.dat modulo RF period TRF
@@ -122,11 +124,11 @@ winMat=Be irisRadius=300 win2Thick=0.12 wallThick=0.4 pipeThick=0.4 cavityMateri
 
 pillbox RFC1 innerLength=249 frequency=0.325 maxGradient=$Grad \
 win1Thick=0 win1OuterRadius=0 collarThick=0 collarRadialThick=0\
-winMat=Be irisRadius=250 win2Thick=0.1 wallThick=0.4 pipeThick=0.4 cavityMaterial=GH2 kill=1
+winMat=Be irisRadius=250*$irisScale win2Thick=0.1 wallThick=0.4 pipeThick=0.4 cavityMaterial=GH2 kill=1
 
 pillbox RFC2 innerLength=249 frequency=0.325 maxGradient=$Grad \
 win1Thick=0 win1OuterRadius=0 collarThick=0 collarRadialThick=0\
-winMat=Be irisRadius=200 win2Thick=0.07 wallThick=0.4 pipeThick=0.4 cavityMaterial=GH2 kill=1
+winMat=Be irisRadius=200*$irisScale win2Thick=0.07 wallThick=0.4 pipeThick=0.4 cavityMaterial=GH2 kill=1
 
 param np=31 # number of snake periods
 param zlastRF=$np*$period+1450
