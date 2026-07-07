@@ -1,0 +1,23 @@
+config_dir: ../hfofo
+input_file: hfofo.in
+runner: {backend: docker, image: ghcr.io/lawrenceleejr/g4beamline:main, timeout: 1200}
+parameters:
+  BLS:         {low: 20.0, high: 25.0, nominal: 21.4}
+  Grad:        {low: 20.0, high: 30.0, nominal: 25.0}
+  Grad0:       {low: 16.0, high: 28.0, nominal: 20.0}
+  delf:        {low: 0.0,  high: 0.10, nominal: 0.0}
+  pitchFactor: {low: 0.60, high: 1.30, nominal: 1.0}
+  dtRF:        {low: -0.20, high: 0.20, nominal: 0.0}
+  wedgeScale:  {low: 0.50, high: 1.50, nominal: 1.0}
+  irisScale:   {low: 1.00, high: 1.40, nominal: 1.0}
+objective:
+  mode: transmission_corrected
+  n_events: 400
+  p0: 247.5
+  p_low: 100.0
+  p_high: 400.0
+  entrance_detector: out2.txt
+  exit_detector: out31.txt
+  trans_entrance_detector: out1.txt
+optimizer: {method: bayes, n_trials: 64, n_jobs: 4, seed: 5, storage: auto}
+out_dir: results/transmission
