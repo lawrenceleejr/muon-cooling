@@ -1,0 +1,34 @@
+# Phase P: test arXiv:1806.07517 sec.7 suggestion 3 -- higher betatron phase
+# advance per focusing unit (stronger solenoid focusing, BLS well above the
+# 21.4 nominal) to shrink the beta function at the absorbers. Co-tunes the RF,
+# tilt and wedge-taper knobs so high-BLS designs get a fair chance; the wedge
+# shape starts from the taperB2 profile. Floor relaxed to T>=0.55 to let the
+# physics show; the paper notes the full benefit needs absorbers localized at
+# beta minima and vacuum RF, which this GH2-filled model does not have.
+config_dir: ../hfofo
+input_file: hfofo.in
+runner: {backend: docker, image: ghcr.io/lawrenceleejr/g4beamline:main, timeout: 1200}
+parameters:
+  BLS:               {low: 22.5, high: 30.0, nominal: 25.0}
+  Grad:              {low: 23.0, high: 30.0, nominal: 25.0}
+  Grad0:             {low: 18.0, high: 24.0, nominal: 20.0}
+  delf:              {low: 0.0,  high: 0.05, nominal: 0.0}
+  pitchFactor:       {low: 0.70, high: 1.30, nominal: 1.0}
+  dtRF:              {low: -0.15, high: 0.15, nominal: 0.0}
+  wedgeScaleStart:   {low: 0.60, high: 1.60, nominal: 0.8}
+  wedgeScaleEnd:     {low: 3.00, high: 5.00, nominal: 4.2}
+  wedgeScaleMidBump: {low: -0.30, high: 1.00, nominal: 0.5}
+objective:
+  mode: brightness
+  n_events: 400
+  p0: 247.5
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.55
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  entrance_detector: out2.txt
+  exit_detector: out31.txt
+  trans_entrance_detector: out1.txt
+optimizer: {method: bayes, n_trials: 24, n_jobs: 3, seed: 31, storage: auto}
+out_dir: results/phaseP

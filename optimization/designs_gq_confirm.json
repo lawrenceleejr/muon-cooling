@@ -1,0 +1,15 @@
+{
+ "nom_Gq-0.078": {
+  "BLS": 21.4,
+  "Grad": 25.0,
+  "Grad0": 20.0,
+  "delf": 0.0,
+  "pitchFactor": 1.0,
+  "dtRF": 0.0,
+  "wedgeScaleStart": 1.0,
+  "wedgeScaleEnd": 1.0,
+  "wedgeScaleMidBump": 0.0,
+  "irisScale": 1.0,
+  "Gq": -0.078
+ }
+}
