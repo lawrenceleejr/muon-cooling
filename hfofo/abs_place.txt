@@ -10,431 +10,431 @@ place Det1 z=-9.8+$zshift+$period*1
 place abtube z=150+$period*1
 place abtube z=850+$period*1
 place abtube z=1550+$period*1
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=59.326*$wedgeScale z=2250+$period*1
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=59.326*$wedgeScale*$ws1 z=2250+$period*1
 place abtube z=2250+$period*1
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=58.783*$wedgeScale z=2950+$period*1
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=58.783*$wedgeScale*$ws1 z=2950+$period*1
 place abtube z=2950+$period*1
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=58.239*$wedgeScale z=3650+$period*1
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=58.239*$wedgeScale*$ws1 z=3650+$period*1
 place abtube z=3650+$period*1
   
 place Det2 z=-9.8+$zshift+$period*2
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=57.694*$wedgeScale z=150+$period*2
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=57.694*$wedgeScale*$ws2 z=150+$period*2
 place abtube z=150+$period*2
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=57.150*$wedgeScale z=850+$period*2
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=57.150*$wedgeScale*$ws2 z=850+$period*2
 place abtube z=850+$period*2
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=56.607*$wedgeScale z=1550+$period*2
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=56.607*$wedgeScale*$ws2 z=1550+$period*2
 place abtube z=1550+$period*2
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=56.066*$wedgeScale z=2250+$period*2
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=56.066*$wedgeScale*$ws2 z=2250+$period*2
 place abtube z=2250+$period*2
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=55.527*$wedgeScale z=2950+$period*2
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=55.527*$wedgeScale*$ws2 z=2950+$period*2
 place abtube z=2950+$period*2
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=54.990*$wedgeScale z=3650+$period*2
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=54.990*$wedgeScale*$ws2 z=3650+$period*2
 place abtube z=3650+$period*2
   
 place Det3 z=-9.8+$zshift+$period*3
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=54.457*$wedgeScale z=150+$period*3
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=54.457*$wedgeScale*$ws3 z=150+$period*3
 place abtube z=150+$period*3
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=53.928*$wedgeScale z=850+$period*3
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=53.928*$wedgeScale*$ws3 z=850+$period*3
 place abtube z=850+$period*3
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=53.403*$wedgeScale z=1550+$period*3
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=53.403*$wedgeScale*$ws3 z=1550+$period*3
 place abtube z=1550+$period*3
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=52.882*$wedgeScale z=2250+$period*3
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=52.882*$wedgeScale*$ws3 z=2250+$period*3
 place abtube z=2250+$period*3
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=52.367*$wedgeScale z=2950+$period*3
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=52.367*$wedgeScale*$ws3 z=2950+$period*3
 place abtube z=2950+$period*3
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=51.856*$wedgeScale z=3650+$period*3
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=51.856*$wedgeScale*$ws3 z=3650+$period*3
 place abtube z=3650+$period*3
   
 place Det4 z=-9.8+$zshift+$period*4
 
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=51.351*$wedgeScale z=150+$period*4
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=51.351*$wedgeScale*$ws4 z=150+$period*4
 place abtube z=150+$period*4
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=50.851*$wedgeScale z=850+$period*4
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=50.851*$wedgeScale*$ws4 z=850+$period*4
 place abtube z=850+$period*4
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=50.357*$wedgeScale z=1550+$period*4
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=50.357*$wedgeScale*$ws4 z=1550+$period*4
 place abtube z=1550+$period*4
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=49.870*$wedgeScale z=2250+$period*4
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=49.870*$wedgeScale*$ws4 z=2250+$period*4
 place abtube z=2250+$period*4
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=49.388*$wedgeScale z=2950+$period*4
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=49.388*$wedgeScale*$ws4 z=2950+$period*4
 place abtube z=2950+$period*4
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=48.913*$wedgeScale z=3650+$period*4
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=48.913*$wedgeScale*$ws4 z=3650+$period*4
 place abtube z=3650+$period*4
   
 place Det5 z=-9.8+$zshift+$period*5
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=48.444*$wedgeScale z=150+$period*5
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=48.444*$wedgeScale*$ws5 z=150+$period*5
 place abtube z=150+$period*5
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=47.982*$wedgeScale z=850+$period*5
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=47.982*$wedgeScale*$ws5 z=850+$period*5
 place abtube z=850+$period*5
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=47.527*$wedgeScale z=1550+$period*5
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=47.527*$wedgeScale*$ws5 z=1550+$period*5
 place abtube z=1550+$period*5
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=47.078*$wedgeScale z=2250+$period*5
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=47.078*$wedgeScale*$ws5 z=2250+$period*5
 place abtube z=2250+$period*5
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=46.636*$wedgeScale z=2950+$period*5
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=46.636*$wedgeScale*$ws5 z=2950+$period*5
 place abtube z=2950+$period*5
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=46.201*$wedgeScale z=3650+$period*5
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=46.201*$wedgeScale*$ws5 z=3650+$period*5
 place abtube z=3650+$period*5
   
 place Det6 z=-9.8+$zshift+$period*6
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=45.773*$wedgeScale z=150+$period*6
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=45.773*$wedgeScale*$ws6 z=150+$period*6
 place abtube z=150+$period*6
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=45.352*$wedgeScale z=850+$period*6
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=45.352*$wedgeScale*$ws6 z=850+$period*6
 place abtube z=850+$period*6
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=44.938*$wedgeScale z=1550+$period*6
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=44.938*$wedgeScale*$ws6 z=1550+$period*6
 place abtube z=1550+$period*6
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=44.530*$wedgeScale z=2250+$period*6
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=44.530*$wedgeScale*$ws6 z=2250+$period*6
 place abtube z=2250+$period*6
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=44.130*$wedgeScale z=2950+$period*6
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=44.130*$wedgeScale*$ws6 z=2950+$period*6
 place abtube z=2950+$period*6
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=43.737*$wedgeScale z=3650+$period*6
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=43.737*$wedgeScale*$ws6 z=3650+$period*6
 place abtube z=3650+$period*6
   
 place Det7 z=-9.8+$zshift+$period*7
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=43.350*$wedgeScale z=150+$period*7
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=43.350*$wedgeScale*$ws7 z=150+$period*7
 place abtube z=150+$period*7
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=42.970*$wedgeScale z=850+$period*7
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=42.970*$wedgeScale*$ws7 z=850+$period*7
 place abtube z=850+$period*7
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=42.597*$wedgeScale z=1550+$period*7
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=42.597*$wedgeScale*$ws7 z=1550+$period*7
 place abtube z=1550+$period*7
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=42.231*$wedgeScale z=2250+$period*7
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=42.231*$wedgeScale*$ws7 z=2250+$period*7
 place abtube z=2250+$period*7
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=41.872*$wedgeScale z=2950+$period*7
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=41.872*$wedgeScale*$ws7 z=2950+$period*7
 place abtube z=2950+$period*7
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=41.519*$wedgeScale z=3650+$period*7
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=41.519*$wedgeScale*$ws7 z=3650+$period*7
 place abtube z=3650+$period*7
   
 place Det8 z=-9.8+$zshift+$period*8
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=41.173*$wedgeScale z=150+$period*8
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=41.173*$wedgeScale*$ws8 z=150+$period*8
 place abtube z=150+$period*8
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=40.834*$wedgeScale z=850+$period*8
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=40.834*$wedgeScale*$ws8 z=850+$period*8
 place abtube z=850+$period*8
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=40.501*$wedgeScale z=1550+$period*8
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=40.501*$wedgeScale*$ws8 z=1550+$period*8
 place abtube z=1550+$period*8
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=40.175*$wedgeScale z=2250+$period*8
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=40.175*$wedgeScale*$ws8 z=2250+$period*8
 place abtube z=2250+$period*8
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=39.855*$wedgeScale z=2950+$period*8
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=39.855*$wedgeScale*$ws8 z=2950+$period*8
 place abtube z=2950+$period*8
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=39.541*$wedgeScale z=3650+$period*8
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=39.541*$wedgeScale*$ws8 z=3650+$period*8
 place abtube z=3650+$period*8
   
 place Det9 z=-9.8+$zshift+$period*9
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=39.233*$wedgeScale z=150+$period*9
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=39.233*$wedgeScale*$ws9 z=150+$period*9
 place abtube z=150+$period*9
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=38.932*$wedgeScale z=850+$period*9
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=38.932*$wedgeScale*$ws9 z=850+$period*9
 place abtube z=850+$period*9
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=38.636*$wedgeScale z=1550+$period*9
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=38.636*$wedgeScale*$ws9 z=1550+$period*9
 place abtube z=1550+$period*9
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=38.347*$wedgeScale z=2250+$period*9
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=38.347*$wedgeScale*$ws9 z=2250+$period*9
 place abtube z=2250+$period*9
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=38.064*$wedgeScale z=2950+$period*9
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=38.064*$wedgeScale*$ws9 z=2950+$period*9
 place abtube z=2950+$period*9
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=37.786*$wedgeScale z=3650+$period*9
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=37.786*$wedgeScale*$ws9 z=3650+$period*9
 place abtube z=3650+$period*9
   
 place Det10 z=-9.8+$zshift+$period*10
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=37.514*$wedgeScale z=150+$period*10
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=37.514*$wedgeScale*$ws10 z=150+$period*10
 place abtube z=150+$period*10
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=37.248*$wedgeScale z=850+$period*10
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=37.248*$wedgeScale*$ws10 z=850+$period*10
 place abtube z=850+$period*10
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=36.988*$wedgeScale z=1550+$period*10
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=36.988*$wedgeScale*$ws10 z=1550+$period*10
 place abtube z=1550+$period*10
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=36.733*$wedgeScale z=2250+$period*10
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=36.733*$wedgeScale*$ws10 z=2250+$period*10
 place abtube z=2250+$period*10
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=36.483*$wedgeScale z=2950+$period*10
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=36.483*$wedgeScale*$ws10 z=2950+$period*10
 place abtube z=2950+$period*10
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=36.238*$wedgeScale z=3650+$period*10
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=36.238*$wedgeScale*$ws10 z=3650+$period*10
 place abtube z=3650+$period*10
   
 place Det11 z=-9.8+$zshift+$period*11
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=35.999*$wedgeScale z=150+$period*11
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=35.999*$wedgeScale*$ws11 z=150+$period*11
 place abtube z=150+$period*11
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=35.765*$wedgeScale z=850+$period*11
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=35.765*$wedgeScale*$ws11 z=850+$period*11
 place abtube z=850+$period*11
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=35.536*$wedgeScale z=1550+$period*11
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=35.536*$wedgeScale*$ws11 z=1550+$period*11
 place abtube z=1550+$period*11
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=35.312*$wedgeScale z=2250+$period*11
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=35.312*$wedgeScale*$ws11 z=2250+$period*11
 place abtube z=2250+$period*11
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=35.093*$wedgeScale z=2950+$period*11
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=35.093*$wedgeScale*$ws11 z=2950+$period*11
 place abtube z=2950+$period*11
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=34.879*$wedgeScale z=3650+$period*11
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=34.879*$wedgeScale*$ws11 z=3650+$period*11
 place abtube z=3650+$period*11
   
 place Det12 z=-9.8+$zshift+$period*12
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=34.670*$wedgeScale z=150+$period*12
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=34.670*$wedgeScale*$ws12 z=150+$period*12
 place abtube z=150+$period*12
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=34.465*$wedgeScale z=850+$period*12
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=34.465*$wedgeScale*$ws12 z=850+$period*12
 place abtube z=850+$period*12
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=34.264*$wedgeScale z=1550+$period*12
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=34.264*$wedgeScale*$ws12 z=1550+$period*12
 place abtube z=1550+$period*12
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=34.068*$wedgeScale z=2250+$period*12
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=34.068*$wedgeScale*$ws12 z=2250+$period*12
 place abtube z=2250+$period*12
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=33.877*$wedgeScale z=2950+$period*12
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=33.877*$wedgeScale*$ws12 z=2950+$period*12
 place abtube z=2950+$period*12
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=33.690*$wedgeScale z=3650+$period*12
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=33.690*$wedgeScale*$ws12 z=3650+$period*12
 place abtube z=3650+$period*12
   
 place Det13 z=-9.8+$zshift+$period*13
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=33.507*$wedgeScale z=150+$period*13
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=33.507*$wedgeScale*$ws13 z=150+$period*13
 place abtube z=150+$period*13
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=33.328*$wedgeScale z=850+$period*13
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=33.328*$wedgeScale*$ws13 z=850+$period*13
 place abtube z=850+$period*13
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=33.153*$wedgeScale z=1550+$period*13
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=33.153*$wedgeScale*$ws13 z=1550+$period*13
 place abtube z=1550+$period*13
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=32.982*$wedgeScale z=2250+$period*13
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=32.982*$wedgeScale*$ws13 z=2250+$period*13
 place abtube z=2250+$period*13
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=32.815*$wedgeScale z=2950+$period*13
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=32.815*$wedgeScale*$ws13 z=2950+$period*13
 place abtube z=2950+$period*13
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=32.652*$wedgeScale z=3650+$period*13
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=32.652*$wedgeScale*$ws13 z=3650+$period*13
 place abtube z=3650+$period*13
   
 place Det14 z=-9.8+$zshift+$period*14
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=32.493*$wedgeScale z=150+$period*14
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=32.493*$wedgeScale*$ws14 z=150+$period*14
 place abtube z=150+$period*14
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=32.337*$wedgeScale z=850+$period*14
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=32.337*$wedgeScale*$ws14 z=850+$period*14
 place abtube z=850+$period*14
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=32.185*$wedgeScale z=1550+$period*14
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=32.185*$wedgeScale*$ws14 z=1550+$period*14
 place abtube z=1550+$period*14
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=32.036*$wedgeScale z=2250+$period*14
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=32.036*$wedgeScale*$ws14 z=2250+$period*14
 place abtube z=2250+$period*14
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=31.891*$wedgeScale z=2950+$period*14
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=31.891*$wedgeScale*$ws14 z=2950+$period*14
 place abtube z=2950+$period*14
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=31.749*$wedgeScale z=3650+$period*14
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=31.749*$wedgeScale*$ws14 z=3650+$period*14
 place abtube z=3650+$period*14
   
 place Det15 z=-9.8+$zshift+$period*15
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=31.611*$wedgeScale z=150+$period*15
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=31.611*$wedgeScale*$ws15 z=150+$period*15
 place abtube z=150+$period*15
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=31.476*$wedgeScale z=850+$period*15
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=31.476*$wedgeScale*$ws15 z=850+$period*15
 place abtube z=850+$period*15
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=31.344*$wedgeScale z=1550+$period*15
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=31.344*$wedgeScale*$ws15 z=1550+$period*15
 place abtube z=1550+$period*15
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=31.215*$wedgeScale z=2250+$period*15
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=31.215*$wedgeScale*$ws15 z=2250+$period*15
 place abtube z=2250+$period*15
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=31.089*$wedgeScale z=2950+$period*15
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=31.089*$wedgeScale*$ws15 z=2950+$period*15
 place abtube z=2950+$period*15
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=30.967*$wedgeScale z=3650+$period*15
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=30.967*$wedgeScale*$ws15 z=3650+$period*15
 place abtube z=3650+$period*15
   
 place Det16 z=-9.8+$zshift+$period*16
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=30.847*$wedgeScale z=150+$period*16
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=30.847*$wedgeScale*$ws16 z=150+$period*16
 place abtube z=150+$period*16
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=30.730*$wedgeScale z=850+$period*16
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=30.730*$wedgeScale*$ws16 z=850+$period*16
 place abtube z=850+$period*16
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=30.615*$wedgeScale z=1550+$period*16
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=30.615*$wedgeScale*$ws16 z=1550+$period*16
 place abtube z=1550+$period*16
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=30.504*$wedgeScale z=2250+$period*16
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=30.504*$wedgeScale*$ws16 z=2250+$period*16
 place abtube z=2250+$period*16
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=30.395*$wedgeScale z=2950+$period*16
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=30.395*$wedgeScale*$ws16 z=2950+$period*16
 place abtube z=2950+$period*16
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=30.289*$wedgeScale z=3650+$period*16
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=30.289*$wedgeScale*$ws16 z=3650+$period*16
 place abtube z=3650+$period*16
   
 place Det17 z=-9.8+$zshift+$period*17
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=30.185*$wedgeScale z=150+$period*17
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=30.185*$wedgeScale*$ws17 z=150+$period*17
 place abtube z=150+$period*17
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=30.084*$wedgeScale z=850+$period*17
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=30.084*$wedgeScale*$ws17 z=850+$period*17
 place abtube z=850+$period*17
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=29.986*$wedgeScale z=1550+$period*17
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=29.986*$wedgeScale*$ws17 z=1550+$period*17
 place abtube z=1550+$period*17
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=29.889*$wedgeScale z=2250+$period*17
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=29.889*$wedgeScale*$ws17 z=2250+$period*17
 place abtube z=2250+$period*17
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=29.795*$wedgeScale z=2950+$period*17
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=29.795*$wedgeScale*$ws17 z=2950+$period*17
 place abtube z=2950+$period*17
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=29.704*$wedgeScale z=3650+$period*17
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=29.704*$wedgeScale*$ws17 z=3650+$period*17
 place abtube z=3650+$period*17
   
 place Det18 z=-9.8+$zshift+$period*18
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=29.614*$wedgeScale z=150+$period*18
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=29.614*$wedgeScale*$ws18 z=150+$period*18
 place abtube z=150+$period*18
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=29.527*$wedgeScale z=850+$period*18
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=29.527*$wedgeScale*$ws18 z=850+$period*18
 place abtube z=850+$period*18
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=29.442*$wedgeScale z=1550+$period*18
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=29.442*$wedgeScale*$ws18 z=1550+$period*18
 place abtube z=1550+$period*18
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=29.359*$wedgeScale z=2250+$period*18
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=29.359*$wedgeScale*$ws18 z=2250+$period*18
 place abtube z=2250+$period*18
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=29.278*$wedgeScale z=2950+$period*18
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=29.278*$wedgeScale*$ws18 z=2950+$period*18
 place abtube z=2950+$period*18
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=29.200*$wedgeScale z=3650+$period*18
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=29.200*$wedgeScale*$ws18 z=3650+$period*18
 place abtube z=3650+$period*18
   
 place Det19 z=-9.8+$zshift+$period*19
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=29.123*$wedgeScale z=150+$period*19
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=29.123*$wedgeScale*$ws19 z=150+$period*19
 place abtube z=150+$period*19
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=29.048*$wedgeScale z=850+$period*19
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=29.048*$wedgeScale*$ws19 z=850+$period*19
 place abtube z=850+$period*19
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.975*$wedgeScale z=1550+$period*19
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.975*$wedgeScale*$ws19 z=1550+$period*19
 place abtube z=1550+$period*19
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.903*$wedgeScale z=2250+$period*19
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.903*$wedgeScale*$ws19 z=2250+$period*19
 place abtube z=2250+$period*19
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.834*$wedgeScale z=2950+$period*19
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.834*$wedgeScale*$ws19 z=2950+$period*19
 place abtube z=2950+$period*19
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.766*$wedgeScale z=3650+$period*19
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.766*$wedgeScale*$ws19 z=3650+$period*19
 place abtube z=3650+$period*19
   
 place Det20 z=-9.8+$zshift+$period*20
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.700*$wedgeScale z=150+$period*20
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.700*$wedgeScale*$ws20 z=150+$period*20
 place abtube z=150+$period*20
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=28.636*$wedgeScale z=850+$period*20
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=28.636*$wedgeScale*$ws20 z=850+$period*20
 place abtube z=850+$period*20
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.573*$wedgeScale z=1550+$period*20
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.573*$wedgeScale*$ws20 z=1550+$period*20
 place abtube z=1550+$period*20
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.512*$wedgeScale z=2250+$period*20
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.512*$wedgeScale*$ws20 z=2250+$period*20
 place abtube z=2250+$period*20
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.452*$wedgeScale z=2950+$period*20
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.452*$wedgeScale*$ws20 z=2950+$period*20
 place abtube z=2950+$period*20
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.394*$wedgeScale z=3650+$period*20
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.394*$wedgeScale*$ws20 z=3650+$period*20
 place abtube z=3650+$period*20
   
 place Det21 z=-9.8+$zshift+$period*21
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.338*$wedgeScale z=150+$period*21
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.338*$wedgeScale*$ws21 z=150+$period*21
 place abtube z=150+$period*21
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=28.282*$wedgeScale z=850+$period*21
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=28.282*$wedgeScale*$ws21 z=850+$period*21
 place abtube z=850+$period*21
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.229*$wedgeScale z=1550+$period*21
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=28.229*$wedgeScale*$ws21 z=1550+$period*21
 place abtube z=1550+$period*21
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.176*$wedgeScale z=2250+$period*21
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=28.176*$wedgeScale*$ws21 z=2250+$period*21
 place abtube z=2250+$period*21
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.125*$wedgeScale z=2950+$period*21
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=28.125*$wedgeScale*$ws21 z=2950+$period*21
 place abtube z=2950+$period*21
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.076*$wedgeScale z=3650+$period*21
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=28.076*$wedgeScale*$ws21 z=3650+$period*21
 place abtube z=3650+$period*21
   
 place Det22 z=-9.8+$zshift+$period*22
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.027*$wedgeScale z=150+$period*22
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=28.027*$wedgeScale*$ws22 z=150+$period*22
 place abtube z=150+$period*22
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.980*$wedgeScale z=850+$period*22
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.980*$wedgeScale*$ws22 z=850+$period*22
 place abtube z=850+$period*22
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.934*$wedgeScale z=1550+$period*22
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.934*$wedgeScale*$ws22 z=1550+$period*22
 place abtube z=1550+$period*22
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.890*$wedgeScale z=2250+$period*22
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.890*$wedgeScale*$ws22 z=2250+$period*22
 place abtube z=2250+$period*22
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.846*$wedgeScale z=2950+$period*22
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.846*$wedgeScale*$ws22 z=2950+$period*22
 place abtube z=2950+$period*22
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.804*$wedgeScale z=3650+$period*22
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.804*$wedgeScale*$ws22 z=3650+$period*22
 place abtube z=3650+$period*22
   
 place Det23 z=-9.8+$zshift+$period*23
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.763*$wedgeScale z=150+$period*23
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.763*$wedgeScale*$ws23 z=150+$period*23
 place abtube z=150+$period*23
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.723*$wedgeScale z=850+$period*23
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.723*$wedgeScale*$ws23 z=850+$period*23
 place abtube z=850+$period*23
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.683*$wedgeScale z=1550+$period*23
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.683*$wedgeScale*$ws23 z=1550+$period*23
 place abtube z=1550+$period*23
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.645*$wedgeScale z=2250+$period*23
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.645*$wedgeScale*$ws23 z=2250+$period*23
 place abtube z=2250+$period*23
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.608*$wedgeScale z=2950+$period*23
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.608*$wedgeScale*$ws23 z=2950+$period*23
 place abtube z=2950+$period*23
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.572*$wedgeScale z=3650+$period*23
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.572*$wedgeScale*$ws23 z=3650+$period*23
 place abtube z=3650+$period*23
   
 place Det24 z=-9.8+$zshift+$period*24
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.537*$wedgeScale z=150+$period*24
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.537*$wedgeScale*$ws24 z=150+$period*24
 place abtube z=150+$period*24
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.503*$wedgeScale z=850+$period*24
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.503*$wedgeScale*$ws24 z=850+$period*24
 place abtube z=850+$period*24
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.470*$wedgeScale z=1550+$period*24
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.470*$wedgeScale*$ws24 z=1550+$period*24
 place abtube z=1550+$period*24
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.437*$wedgeScale z=2250+$period*24
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.437*$wedgeScale*$ws24 z=2250+$period*24
 place abtube z=2250+$period*24
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.406*$wedgeScale z=2950+$period*24
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.406*$wedgeScale*$ws24 z=2950+$period*24
 place abtube z=2950+$period*24
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.375*$wedgeScale z=3650+$period*24
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.375*$wedgeScale*$ws24 z=3650+$period*24
 place abtube z=3650+$period*24
   
 place Det25 z=-9.8+$zshift+$period*25
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.346*$wedgeScale z=150+$period*25
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.346*$wedgeScale*$ws25 z=150+$period*25
 place abtube z=150+$period*25
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.317*$wedgeScale z=850+$period*25
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.317*$wedgeScale*$ws25 z=850+$period*25
 place abtube z=850+$period*25
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.288*$wedgeScale z=1550+$period*25
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.288*$wedgeScale*$ws25 z=1550+$period*25
 place abtube z=1550+$period*25
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.261*$wedgeScale z=2250+$period*25
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.261*$wedgeScale*$ws25 z=2250+$period*25
 place abtube z=2250+$period*25
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.234*$wedgeScale z=2950+$period*25
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.234*$wedgeScale*$ws25 z=2950+$period*25
 place abtube z=2950+$period*25
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.209*$wedgeScale z=3650+$period*25
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.209*$wedgeScale*$ws25 z=3650+$period*25
 place abtube z=3650+$period*25
   
 place Det26 z=-9.8+$zshift+$period*26
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.183*$wedgeScale z=150+$period*26
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.183*$wedgeScale*$ws26 z=150+$period*26
 place abtube z=150+$period*26
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.159*$wedgeScale z=850+$period*26
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.159*$wedgeScale*$ws26 z=850+$period*26
 place abtube z=850+$period*26
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.135*$wedgeScale z=1550+$period*26
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.135*$wedgeScale*$ws26 z=1550+$period*26
 place abtube z=1550+$period*26
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.112*$wedgeScale z=2250+$period*26
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=27.112*$wedgeScale*$ws26 z=2250+$period*26
 place abtube z=2250+$period*26
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.089*$wedgeScale z=2950+$period*26
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=27.089*$wedgeScale*$ws26 z=2950+$period*26
 place abtube z=2950+$period*26
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.068*$wedgeScale z=3650+$period*26
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=27.068*$wedgeScale*$ws26 z=3650+$period*26
 place abtube z=3650+$period*26
   
 place Det27 z=-9.8+$zshift+$period*27
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.046*$wedgeScale z=150+$period*27
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=27.046*$wedgeScale*$ws27 z=150+$period*27
 place abtube z=150+$period*27
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.026*$wedgeScale z=850+$period*27
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=27.026*$wedgeScale*$ws27 z=850+$period*27
 place abtube z=850+$period*27
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.006*$wedgeScale z=1550+$period*27
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=27.006*$wedgeScale*$ws27 z=1550+$period*27
 place abtube z=1550+$period*27
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.986*$wedgeScale z=2250+$period*27
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.986*$wedgeScale*$ws27 z=2250+$period*27
 place abtube z=2250+$period*27
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.967*$wedgeScale z=2950+$period*27
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.967*$wedgeScale*$ws27 z=2950+$period*27
 place abtube z=2950+$period*27
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.949*$wedgeScale z=3650+$period*27
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.949*$wedgeScale*$ws27 z=3650+$period*27
 place abtube z=3650+$period*27
   
 place Det28 z=-9.8+$zshift+$period*28
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=26.931*$wedgeScale z=150+$period*28
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=26.931*$wedgeScale*$ws28 z=150+$period*28
 place abtube z=150+$period*28
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=26.914*$wedgeScale z=850+$period*28
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=26.914*$wedgeScale*$ws28 z=850+$period*28
 place abtube z=850+$period*28
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=26.897*$wedgeScale z=1550+$period*28
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=26.897*$wedgeScale*$ws28 z=1550+$period*28
 place abtube z=1550+$period*28
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.881*$wedgeScale z=2250+$period*28
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.881*$wedgeScale*$ws28 z=2250+$period*28
 place abtube z=2250+$period*28
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.865*$wedgeScale z=2950+$period*28
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.865*$wedgeScale*$ws28 z=2950+$period*28
 place abtube z=2950+$period*28
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.849*$wedgeScale z=3650+$period*28
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.849*$wedgeScale*$ws28 z=3650+$period*28
 place abtube z=3650+$period*28
   
 place Det29 z=-9.8+$zshift+$period*29
   
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=26.834*$wedgeScale z=150+$period*29
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z-26.97 lowerWidth=26.834*$wedgeScale*$ws29 z=150+$period*29
 place abtube z=150+$period*29
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=26.820*$wedgeScale z=850+$period*29
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z93.03 lowerWidth=26.820*$wedgeScale*$ws29 z=850+$period*29
 place abtube z=850+$period*29
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=26.806*$wedgeScale z=1550+$period*29
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z213.0 lowerWidth=26.806*$wedgeScale*$ws29 z=1550+$period*29
 place abtube z=1550+$period*29
-place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.792*$wedgeScale z=2250+$period*29
+place wedge0 x=-79.11 y=-155.4 rotation=Y90,Z333.0 lowerWidth=26.792*$wedgeScale*$ws29 z=2250+$period*29
 place abtube z=2250+$period*29
-place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.779*$wedgeScale z=2950+$period*29
+place wedge0 x=174.2 y=9.204 rotation=Y90,Z453.0 lowerWidth=26.779*$wedgeScale*$ws29 z=2950+$period*29
 place abtube z=2950+$period*29
-place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.766*$wedgeScale z=3650+$period*29
+place wedge0 x=-95.05 y=146.2 rotation=Y90,Z573.0 lowerWidth=26.766*$wedgeScale*$ws29 z=3650+$period*29
 place abtube z=3650+$period*29
   
 place Det30 z=-9.8+$zshift+$period*30
