@@ -1,0 +1,50 @@
+{
+  "taperC": {
+    "BLS": 20.812035479556364,
+    "Grad": 25.723386667623956,
+    "Grad0": 22.334989682963347,
+    "delf": 0.01238604778590977,
+    "pitchFactor": 1.0736353894280835,
+    "dtRF": -0.01098051016111067,
+    "wedgeScaleStart": 0.823909590463931,
+    "wedgeScaleEnd": 4.079419540265216,
+    "wedgeScaleMidBump": 0.4501311561912233,
+    "irisScale": 1.0551926581204718
+  },
+  "taperB2": {
+    "BLS": 21.4,
+    "Grad": 25.0,
+    "Grad0": 20.0,
+    "delf": 0.0,
+    "pitchFactor": 1.0,
+    "dtRF": 0.0,
+    "wedgeScaleStart": 0.8,
+    "wedgeScaleEnd": 4.2,
+    "wedgeScaleMidBump": 0.5,
+    "irisScale": 1.0
+  },
+  "taperA": {
+    "BLS": 21.4,
+    "Grad": 25.0,
+    "Grad0": 20.0,
+    "delf": 0.0,
+    "pitchFactor": 1.0,
+    "dtRF": 0.0,
+    "wedgeScaleStart": 1.0,
+    "wedgeScaleEnd": 3.5,
+    "wedgeScaleMidBump": 0.0,
+    "irisScale": 1.0
+  },
+  "nominal": {
+    "BLS": 21.4,
+    "Grad": 25.0,
+    "Grad0": 20.0,
+    "delf": 0.0,
+    "pitchFactor": 1.0,
+    "dtRF": 0.0,
+    "wedgeScaleStart": 1.0,
+    "wedgeScaleEnd": 1.0,
+    "wedgeScaleMidBump": 0.0,
+    "irisScale": 1.0
+  }
+}
