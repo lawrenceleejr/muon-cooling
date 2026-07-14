@@ -26,6 +26,8 @@
 # wedgeScale  : scale on all LiH wedge widths (cooling material)-- nominal 1
 # wedgeScaleStart/End : linear taper of wedge width along the channel
 #               (period 1 -> 30); both nominal 1 = flat. Multiplies wedgeScale.
+# wedgeScaleMidBump : triangular mid-channel bump added to the taper
+#               (0 at both ends, full value at mid-channel); 0 = pure linear.
 # irisScale   : scale on the small RF irises RFC1(250mm)+RFC2(200mm) -- nominal 1
 # rngSeed     : Geant4 random seed (fixed => common random numbers)
 param BLS=21.4
@@ -37,6 +39,7 @@ param dtRF=0.0
 param wedgeScale=1.0
 param wedgeScaleStart=1.0
 param wedgeScaleEnd=1.0
+param wedgeScaleMidBump=0.0
 param irisScale=1.0
 param rngSeed=1
 param nEvents=100
@@ -138,36 +141,36 @@ param np=31 # number of snake periods
 param zlastRF=$np*$period+1450
 
 # per-period wedge taper factors (linear wedgeScaleStart -> wedgeScaleEnd)
-param ws1=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.000000
-param ws2=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.034483
-param ws3=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.068966
-param ws4=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.103448
-param ws5=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.137931
-param ws6=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.172414
-param ws7=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.206897
-param ws8=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.241379
-param ws9=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.275862
-param ws10=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.310345
-param ws11=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.344828
-param ws12=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.379310
-param ws13=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.413793
-param ws14=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.448276
-param ws15=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.482759
-param ws16=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.517241
-param ws17=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.551724
-param ws18=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.586207
-param ws19=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.620690
-param ws20=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.655172
-param ws21=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.689655
-param ws22=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.724138
-param ws23=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.758621
-param ws24=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.793103
-param ws25=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.827586
-param ws26=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.862069
-param ws27=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.896552
-param ws28=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.931034
-param ws29=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.965517
-param ws30=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*1.000000
+param ws1=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.000000+$wedgeScaleMidBump*0.000000
+param ws2=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.034483+$wedgeScaleMidBump*0.068966
+param ws3=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.068966+$wedgeScaleMidBump*0.137932
+param ws4=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.103448+$wedgeScaleMidBump*0.206896
+param ws5=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.137931+$wedgeScaleMidBump*0.275862
+param ws6=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.172414+$wedgeScaleMidBump*0.344828
+param ws7=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.206897+$wedgeScaleMidBump*0.413794
+param ws8=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.241379+$wedgeScaleMidBump*0.482758
+param ws9=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.275862+$wedgeScaleMidBump*0.551724
+param ws10=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.310345+$wedgeScaleMidBump*0.620690
+param ws11=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.344828+$wedgeScaleMidBump*0.689656
+param ws12=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.379310+$wedgeScaleMidBump*0.758620
+param ws13=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.413793+$wedgeScaleMidBump*0.827586
+param ws14=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.448276+$wedgeScaleMidBump*0.896552
+param ws15=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.482759+$wedgeScaleMidBump*0.965518
+param ws16=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.517241+$wedgeScaleMidBump*0.965518
+param ws17=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.551724+$wedgeScaleMidBump*0.896552
+param ws18=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.586207+$wedgeScaleMidBump*0.827586
+param ws19=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.620690+$wedgeScaleMidBump*0.758620
+param ws20=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.655172+$wedgeScaleMidBump*0.689656
+param ws21=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.689655+$wedgeScaleMidBump*0.620690
+param ws22=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.724138+$wedgeScaleMidBump*0.551724
+param ws23=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.758621+$wedgeScaleMidBump*0.482758
+param ws24=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.793103+$wedgeScaleMidBump*0.413794
+param ws25=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.827586+$wedgeScaleMidBump*0.344828
+param ws26=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.862069+$wedgeScaleMidBump*0.275862
+param ws27=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.896552+$wedgeScaleMidBump*0.206896
+param ws28=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.931034+$wedgeScaleMidBump*0.137932
+param ws29=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.965517+$wedgeScaleMidBump*0.068966
+param ws30=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*1.000000+$wedgeScaleMidBump*0.000000
 
 include abs_place.txt
 include RFplace.txt
