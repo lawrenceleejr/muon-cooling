@@ -292,6 +292,85 @@ asks whether it can be recovered. Summary:
 - Every evaluation now reports a **decay-corrected transmission** (aperture/optics
   survival) alongside the raw number.
 
+## 6c. The paper's suggested improvements, tested
+
+The HFOFO paper ([arXiv:1806.07517](https://arxiv.org/abs/1806.07517)) closes
+with a short list of possible improvements. We implemented and tested each of
+them in this model (raw artifacts in
+[`paper_suggestions/`](paper_suggestions/)); all runs at 400 events with common
+random numbers, references on the same seed/batch: nominal T=0.650, ε₆D=187;
+`taperB2` T=0.606, ε₆D=96.
+
+**1. Quadrupole equalization field (paper §4).** A constant unipolar quadrupole
+Gq = −0.052 T/m equalizes the two transverse normal-mode cooling rates, at the
+price of a β-beat; it is off in the published design. We added it as an overlay
+field (`Gq`/`GqRoll` knobs in `hfofo.in`) and scanned Gq ∈ {−0.026, −0.052,
+−0.078} T/m and a 45° roll on both the nominal and `taperB2` backgrounds. **No
+gain**: on nominal the best case (−0.052, roll 45°) is only ~seed-noise better
+in ε₆D (172 vs 205) at lower T; on `taperB2` it degrades both T (0.568 vs
+0.602) and ε₆D (90 vs 80). An apparent transmission boost at −0.078 T/m
+(T=0.677 on seed 1) did not reproduce on seeds 2–3 (0.645 ± 0.012 vs nominal
+0.649). The equalization helps the *slower* mode but the β-beat and the
+already-dominant mode coupling in the tilted lattice appear to eat the benefit.
+
+**2. Independently powered dipole coils (paper §7).** The engineering point —
+separate coils are more practical than tilting solenoids — is outside a
+tracking study, but its tunable-physics content is a *z-dependent dipole
+strength*, decoupled from focusing. We added per-period tilt factors
+(`pitchTaperStart/End`, `pitchP1..29` in the card) and screened rising and
+falling profiles (±15–30 %) on both backgrounds. **All variants are neutral or
+worse** (e.g. on `taperB2`: 1.15→0.85 gives ε₆D=115 vs 80; 0.85→1.15 gives
+213). The flat dipole profile of the published design is already near-optimal
+at this granularity — consistent with the dispersion being resonantly
+generated, where a z-profile mostly detunes it.
+
+**3. Higher betatron phase advance per focusing unit (paper §7).** The paper
+suggests going beyond the design's φ = 74° to shrink β at the absorbers,
+cautioning that the full benefit needs absorbers localized at the β-minima and
+vacuum RF. A dedicated 24-trial TPE scan (Phase P,
+[`../../optimization/config_phaseP.yaml`](../../optimization/config_phaseP.yaml))
+over BLS ∈ [22.5, 30] with all RF/tilt/wedge-shape knobs co-tuned confirms the
+caution empirically — **in this GH2-filled lattice, stronger focusing is
+strictly worse**:
+
+| BLS (taperB2 wedge, same seed) | 21.4 | 23 | 25 | 27 | 29 |
+|---|:---:|:---:|:---:|:---:|:---:|
+| T | **0.602** | 0.517 | 0.538 | 0.508 | 0.435 |
+| ε₆D(exit) mm³ | **80** | 123 | 138 | 124 | 162 |
+
+Transmission decays monotonically with BLS (the transverse tunes climb toward
+the parametric resonance and the dynamic momentum acceptance shrinks — the
+same acceptance wall as §6b), and ε₆D never improves because the absorption is
+distributed over the GH2 and wedges rather than localized at the β-minima. The
+best design the optimizer could find in the whole high-BLS box (BLS 22.5,
+validated 3 seeds: T=0.596 ± 0.007, ε₆D=101 ± 17) merely matches `taperB2` at
+slightly lower transmission. Every earlier phase independently drifted to
+BLS ≈ 20.5–22.5; this closes that question.
+
+**4. Length taper (paper §7): "×5 by tapering down the length of all elements
+and increasing the solenoid current".** This is the one suggestion that cannot
+be tested with global knobs, and the geometry says why: each 700 mm focusing
+cell carries a rigid ~500 mm block of two 325 MHz cavities (their radius is
+fixed by the frequency, their combined length by the gradient needed for the
+energy balance) centered in the solenoid bore. The free mid-cell gap is
+(700·s − 500) mm under a cell compaction s, while the thick end-channel wedge
+needs ~115 mm plus clearance — so **only s ≳ 0.93 (~7 % compaction) is
+available without redesigning the RF**, worth an estimated 10–15 % in ε₆D (β
+∝ cell length at fixed tune), not ×5. The full factor requires progressively
+shorter cells with the absorbers at the β-minima and the RF moved out of the
+cells (vacuum RF between coils, or the pulsed radial lines the paper cites) —
+i.e. a new lattice, not a tune of this one. This is the genuine follow-up
+design study; the present campaign's shaped wedge taper (`taperB2`, §6a)
+captures the same "adapt the cooling to the shrinking beam" physics on the z
+axis that *is* accessible in the fixed lattice.
+
+**Bottom line.** Within the fixed 325 MHz GH2 architecture, none of the
+paper's four suggestions beats the shaped wedge taper found in Phase T2 —
+suggestions 1–3 are net-negative or neutral in this model (1 and 3 for reasons
+the paper itself anticipated), and suggestion 4 needs a redesigned lattice.
+The `Gq`, `GqRoll` and `pitchTaperStart/End` knobs remain in the card for
+future studies.
+
 ## 7. Caveats
 
 1. **Wedge thickness.** `brightE2` uses LiH wedges ~3.3× the nominal width
