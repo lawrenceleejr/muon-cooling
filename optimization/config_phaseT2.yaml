@@ -1,0 +1,30 @@
+# Phase T2: refine cooling at fixed high transmission (hard floor T>=0.60).
+# Adds the taper-shape knob (mid-channel bump) to the linear taper.
+config_dir: ../hfofo
+input_file: hfofo.in
+runner: {backend: docker, image: ghcr.io/lawrenceleejr/g4beamline:main, timeout: 1200}
+parameters:
+  BLS:               {low: 20.5, high: 22.5, nominal: 21.4}
+  Grad:              {low: 23.0, high: 28.0, nominal: 25.0}
+  Grad0:             {low: 18.0, high: 24.0, nominal: 20.0}
+  delf:              {low: 0.0,  high: 0.06, nominal: 0.0}
+  pitchFactor:       {low: 0.80, high: 1.15, nominal: 1.0}
+  dtRF:              {low: -0.10, high: 0.10, nominal: 0.0}
+  wedgeScaleStart:   {low: 0.70, high: 2.00, nominal: 1.0}
+  wedgeScaleEnd:     {low: 1.50, high: 4.50, nominal: 3.5}
+  wedgeScaleMidBump: {low: -0.60, high: 1.50, nominal: 0.0}
+  irisScale:         {low: 1.00, high: 1.20, nominal: 1.0}
+objective:
+  mode: brightness
+  n_events: 400
+  p0: 247.5
+  p_low: 100.0
+  p_high: 400.0
+  transmission_floor: 0.60
+  transmission_weight: 1.0
+  cooling_weight: 1.0
+  entrance_detector: out2.txt
+  exit_detector: out31.txt
+  trans_entrance_detector: out1.txt
+optimizer: {method: bayes, n_trials: 60, n_jobs: 3, seed: 29, storage: auto, warm_jsonl: results/phaseT_aug.jsonl}
+out_dir: results/phaseT2
