@@ -29,6 +29,13 @@
 # wedgeScaleMidBump : triangular mid-channel bump added to the taper
 #               (0 at both ends, full value at mid-channel); 0 = pure linear.
 # irisScale   : scale on the small RF irises RFC1(250mm)+RFC2(200mm) -- nominal 1
+# Gq          : constant quadrupole gradient over the snake (T/m) -- nominal 0.
+#               arXiv:1806.07517 sec.4 suggests Gq=-0.052 T/m to equalize the
+#               transverse normal-mode cooling rates (off in published design).
+# GqRoll      : roll angle of that quadrupole field about z (degrees)
+# pitchTaperStart/End : linear per-period scale on the periodic-section solenoid
+#               tilt (dipole field), emulating independently powered dipole
+#               coils with a z-profile (arXiv:1806.07517 sec.7); both nominal 1.
 # rngSeed     : Geant4 random seed (fixed => common random numbers)
 param BLS=21.4
 param Grad=25
@@ -41,6 +48,10 @@ param wedgeScaleStart=1.0
 param wedgeScaleEnd=1.0
 param wedgeScaleMidBump=0.0
 param irisScale=1.0
+param Gq=0.0
+param GqRoll=0.0
+param pitchTaperStart=1.0
+param pitchTaperEnd=1.0
 param rngSeed=1
 param nEvents=100
 ### ----------------------------------------------------------------------------
@@ -95,6 +106,36 @@ coil kat11 innerRadius=420 outerRadius=600 length=300 nSheets=10 maxR=360 maxZ=6
 tolerance=0.003
 
 param pitch=-0.0025*180/$pi*$pitchFactor
+# per-period dipole (tilt) taper factors, cf. wedge ws1..ws30
+param pitchP1=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.000000)
+param pitchP2=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.034483)
+param pitchP3=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.068966)
+param pitchP4=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.103448)
+param pitchP5=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.137931)
+param pitchP6=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.172414)
+param pitchP7=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.206897)
+param pitchP8=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.241379)
+param pitchP9=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.275862)
+param pitchP10=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.310345)
+param pitchP11=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.344828)
+param pitchP12=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.379310)
+param pitchP13=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.413793)
+param pitchP14=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.448276)
+param pitchP15=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.482759)
+param pitchP16=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.517241)
+param pitchP17=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.551724)
+param pitchP18=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.586207)
+param pitchP19=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.620690)
+param pitchP20=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.655172)
+param pitchP21=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.689655)
+param pitchP22=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.724138)
+param pitchP23=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.758621)
+param pitchP24=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.793103)
+param pitchP25=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.827586)
+param pitchP26=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.862069)
+param pitchP27=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.896552)
+param pitchP28=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.931034)
+param pitchP29=$pitch*($pitchTaperStart+($pitchTaperEnd-$pitchTaperStart)*0.965517)
 param cur0=4.421*$BLS
 param curpl=$cur0*(1+$delf/2) curmn=-$cur0*(1-$delf/2)
 param cur1=4.421*10.98 cur2=-4.421*17.89 cur3=4.421*19.64 cur4=-4.421*21.12 # entrance
@@ -171,6 +212,17 @@ param ws27=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.896552+$wedgeSca
 param ws28=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.931034+$wedgeScaleMidBump*0.137932
 param ws29=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*0.965517+$wedgeScaleMidBump*0.068966
 param ws30=$wedgeScaleStart+($wedgeScaleEnd-$wedgeScaleStart)*1.000000+$wedgeScaleMidBump*0.000000
+
+### optional constant quadrupole field over the snake to equalize the two
+### transverse normal-mode cooling rates (arXiv:1806.07517 sec.4 suggests
+### Gq=-0.052 T/m; it is off, Gq=0, in the published design).
+if $Gq!=0
+  # NB: a box (width/height) map is required -- with radius= the map is
+  # axisymmetric r-z and a quadrupole term silently averages to zero.
+  fieldexpr QuadEq Bx=$Gq*0.001*y By=$Gq*0.001*x \
+      length=130200 width=800 height=800 nX=11 nY=11 nZ=27
+  place QuadEq z=65100 rotation=Z$GqRoll
+endif
 
 include abs_place.txt
 include RFplace.txt
