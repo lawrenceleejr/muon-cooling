@@ -207,6 +207,38 @@ The improvement is coherent:
 
 ---
 
+## 6a. Phase T — the tapered absorber: high transmission *and* strong cooling
+
+The loss decomposition (§6b) showed that thick wedges cost transmission mostly
+**early** in the channel, where the beam is still hot and large. That suggested a
+new degree of freedom the whole campaign had lacked: a **z-tapered wedge
+profile** (`wedgeScaleStart` → `wedgeScaleEnd`, linear over periods 1→30) — thin
+absorbers early to protect the beam, thick absorbers late to cool hard once the
+beam is small.
+
+It works. Validated at 400 events × 3 seeds against nominal at identical
+statistics:
+
+| design | T | ε₆D(exit) (mm³) |
+|---|:---:|:---:|
+| **taperA** — nominal optics, wedge 1.0→3.5 | **0.609 ± 0.010** | **129 ± 32** |
+| nominal | 0.650 ± 0.010 | 187 ± 37 |
+| (brightE2, flat 3.27×, for reference) | 0.49 | ~100 |
+
+`taperA` keeps **94 % of the nominal transmission** (vs 75 % for the flat
+thick-wedge `brightE2`) while cooling harder than nominal in **every seed**
+(mean exit emittance 31 % lower; brightness ≈ 1.4× nominal at these statistics,
+up to 2.0× in same-seed comparisons). It is the recommended design when both
+transmission and cooling matter: [`../../hfofo/optimized_taper.json`](../../hfofo/optimized_taper.json).
+A 22-trial TPE refinement of the taper family did not beat this simple
+nominal-optics + 1.0→3.5 point. Raw artifacts in [`phaseT/`](phaseT/).
+
+*Caveat:* the exit-emittance estimator is noisy at 400 events (±25 %), so the
+brightness magnitude carries that uncertainty; the transmission numbers are
+solid (±0.01). A ≥1500-event revalidation is the standing follow-up (blocked by
+container instability in this session). The taper also inherits the wedge
+engineering caveat (§7): late-channel wedges reach 3.5× the design width.
+
 ## 6b. Transmission and where the losses go
 
 A dedicated study ([`losses/`](losses/)) decomposes the transmission loss and

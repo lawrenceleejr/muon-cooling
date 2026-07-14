@@ -1,0 +1,7 @@
+{
+  "_comment": "RECOMMENDED tapered-wedge HFOFO design ('taperA', Phase T): nominal optics with the LiH wedge width ramped linearly from 1.0x (period 1) to 3.5x (period 30) of the design profile -- thin early to protect the hot beam from scraping/decay, thick late to cool the small beam hard. Validated 400 events x 3 seeds vs nominal at identical statistics: T=0.609+/-0.010 (94% of nominal 0.650) with exit eps6D=129+/-32 vs 187+/-37 mm^3 (better cooling in every seed; brightness ~1.4x, up to 2.0x in same-seed comparisons). Keeps far more beam than the flat thick-wedge brightE2 (T=0.49) at comparable-to-somewhat-less peak cooling. Apply: python ../optimization/apply_design.py hfofo.in optimized_taper.json",
+  "BLS": 21.4, "Grad": 25.0, "Grad0": 20.0, "delf": 0.0,
+  "pitchFactor": 1.0, "dtRF": 0.0,
+  "wedgeScale": 1.0, "wedgeScaleStart": 1.0, "wedgeScaleEnd": 3.5,
+  "irisScale": 1.0
+}

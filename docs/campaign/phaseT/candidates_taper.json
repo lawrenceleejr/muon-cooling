@@ -1,0 +1,5 @@
+{
+  "nominal":  {"BLS":21.4,"Grad":25.0,"Grad0":20.0,"delf":0.0,"pitchFactor":1.0,"dtRF":0.0,"wedgeScaleStart":1.0,"wedgeScaleEnd":1.0,"irisScale":1.0},
+  "taperA":   {"BLS":21.4,"Grad":25.0,"Grad0":20.0,"delf":0.0,"pitchFactor":1.0,"dtRF":0.0,"wedgeScaleStart":1.0,"wedgeScaleEnd":3.5,"irisScale":1.0},
+  "taperB":   {"BLS":21.44,"Grad":24.44,"Grad0":21.91,"delf":0.042,"pitchFactor":0.777,"dtRF":-0.003,"wedgeScaleStart":0.755,"wedgeScaleEnd":3.90,"irisScale":1.09}
+}

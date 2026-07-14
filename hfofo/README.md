@@ -67,6 +67,12 @@ python ../optimization/apply_design.py hfofo.in optimized.json
 `balanced` design ([`optimized_conservative.json`](optimized_conservative.json))
 gives 1.33× at a thinner wedge and higher transmission.
 
+**Best of both — the tapered wedge** ([`optimized_taper.json`](optimized_taper.json)):
+nominal optics with the wedge width ramped 1.0×→3.5× along the channel keeps
+**T = 0.61 (94 % of nominal)** while cooling harder than nominal in every seed
+(exit ε₆D 129 ± 32 vs 187 ± 37 mm³ at matched statistics). Recommended when both
+transmission and cooling matter; see `docs/campaign/` §6a.
+
 ## Tunable parameters
 
 The `OPTIMIZER PARAMETERS` block at the top of `hfofo.in`:
