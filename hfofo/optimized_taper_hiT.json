@@ -1,0 +1,8 @@
+{
+  "_comment": "Higher-transmission shaped-taper HFOFO design ('taperC', Phase T2 trial 47): shaped wedge taper (start 0.82x -> end 4.08x, +0.45 mid-channel bump) plus a mild optics retune (BLS 20.81, Grad 25.72, Grad0 22.33, pitchFactor 1.074, small delf/dtRF/irisScale trims). Validated 400 events x 3 seeds: T=0.624+/-0.018 (96% of nominal 0.650) with exit eps6D=103+/-23 vs nominal 187+/-38 mm^3 -- exit brightness 1.75x nominal. Slightly higher transmission than the recommended 'taperB2' (optimized_taper.json) at slightly less cooling; choose this one when every percent of transmission matters. Apply: python ../optimization/apply_design.py hfofo.in optimized_taper_hiT.json",
+  "BLS": 20.812, "Grad": 25.7234, "Grad0": 22.335, "delf": 0.0124,
+  "pitchFactor": 1.0736, "dtRF": -0.011,
+  "wedgeScale": 1.0, "wedgeScaleStart": 0.8239, "wedgeScaleEnd": 4.0794,
+  "wedgeScaleMidBump": 0.4501,
+  "irisScale": 1.0552
+}

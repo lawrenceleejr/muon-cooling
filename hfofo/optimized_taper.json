@@ -1,7 +1,8 @@
 {
-  "_comment": "RECOMMENDED tapered-wedge HFOFO design ('taperA', Phase T): nominal optics with the LiH wedge width ramped linearly from 1.0x (period 1) to 3.5x (period 30) of the design profile -- thin early to protect the hot beam from scraping/decay, thick late to cool the small beam hard. Validated 400 events x 3 seeds vs nominal at identical statistics: T=0.609+/-0.010 (94% of nominal 0.650) with exit eps6D=129+/-32 vs 187+/-37 mm^3 (better cooling in every seed; brightness ~1.4x, up to 2.0x in same-seed comparisons). Keeps far more beam than the flat thick-wedge brightE2 (T=0.49) at comparable-to-somewhat-less peak cooling. Apply: python ../optimization/apply_design.py hfofo.in optimized_taper.json",
+  "_comment": "RECOMMENDED tapered-wedge HFOFO design ('taperB2', Phase T2): nominal optics with the LiH wedge width shaped along the channel -- start 0.8x, linear ramp to 4.2x (period 30), plus a +0.5 triangular mid-channel bump (ws_i = 0.8 + 3.4*frac + 0.5*tri). Thin early to protect the hot beam, extra material mid-channel where the beam is already compact, thickest at the end. Validated 400 events x 3 seeds vs nominal/taperA at identical statistics: T=0.606+/-0.014 with exit eps6D=95.8+/-18.4 vs taperA 129+/-32 and nominal 187+/-38 mm^3 -- better cooling than taperA in every seed at the same transmission; exit brightness 1.82x nominal. Requires NO optics/RF changes. Supersedes the linear 'taperA' (Phase T). See also optimized_taper_hiT.json ('taperC') for T=0.624 at eps6D=103+/-23. Apply: python ../optimization/apply_design.py hfofo.in optimized_taper.json",
   "BLS": 21.4, "Grad": 25.0, "Grad0": 20.0, "delf": 0.0,
   "pitchFactor": 1.0, "dtRF": 0.0,
-  "wedgeScale": 1.0, "wedgeScaleStart": 1.0, "wedgeScaleEnd": 3.5,
+  "wedgeScale": 1.0, "wedgeScaleStart": 0.8, "wedgeScaleEnd": 4.2,
+  "wedgeScaleMidBump": 0.5,
   "irisScale": 1.0
 }

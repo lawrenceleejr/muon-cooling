@@ -16,6 +16,13 @@ conservative design (**`balanced`**, 1.33× brightness at 88% transmission with 
 thinner absorber) is offered as an alternative. All numbers are resolved across
 three independent Monte-Carlo seeds.
 
+The final refinement (Phase T2, §6a) removes brightE2's transmission penalty
+almost entirely: a **shaped z-tapered absorber** (**`taperB2`** — wedge width
+0.8× → 4.2× along the channel with a mid-channel bump, *nominal optics and RF*)
+reaches the same exit emittance (96 ± 18 mm³ at matched 400-event statistics)
+at **T = 0.61 instead of 0.49** — **1.8× the delivered brightness of nominal at
+93% of its transmission**, changing nothing but the wedge profile.
+
 Equally important is a **methodological result**: several designs that appeared
 2–18× better under naive figures of merit (an entrance-referenced "cooling
 factor", or a low-statistics scalar merit) **did not survive** high-statistics,
@@ -228,16 +235,42 @@ statistics:
 `taperA` keeps **94 % of the nominal transmission** (vs 75 % for the flat
 thick-wedge `brightE2`) while cooling harder than nominal in **every seed**
 (mean exit emittance 31 % lower; brightness ≈ 1.4× nominal at these statistics,
-up to 2.0× in same-seed comparisons). It is the recommended design when both
-transmission and cooling matter: [`../../hfofo/optimized_taper.json`](../../hfofo/optimized_taper.json).
-A 22-trial TPE refinement of the taper family did not beat this simple
-nominal-optics + 1.0→3.5 point. Raw artifacts in [`phaseT/`](phaseT/).
+up to 2.0× in same-seed comparisons). A 22-trial TPE refinement of the linear
+taper family did not beat this point. Raw artifacts in [`phaseT/`](phaseT/).
 
-*Caveat:* the exit-emittance estimator is noisy at 400 events (±25 %), so the
-brightness magnitude carries that uncertainty; the transmission numbers are
-solid (±0.01). A ≥1500-event revalidation is the standing follow-up (blocked by
-container instability in this session). The taper also inherits the wedge
-engineering caveat (§7): late-channel wedges reach 3.5× the design width.
+### Phase T2 — shaping the taper (mid-channel bump)
+
+The linear taper leaves one question open: is *linear* the right profile? Phase
+T2 added a third shape term — `wedgeScaleMidBump`, a triangular bump that is
+zero at both ends and maximal at mid-channel — and re-optimized all ten knobs
+(56 TPE trials at 400 events, warm-started from Phase T, transmission floor
+T ≥ 0.60). The optimizer's answer: start *thinner* than taperA (0.8×), ramp
+steeper (to ~4.2×), and add material mid-channel (+0.5 bump) where the beam is
+already compact but still far from equilibrium. Validated at 400 events × 3
+seeds against taperA and nominal at identical statistics:
+
+| design | T | ε₆D(exit) (mm³) | exit brightness vs nominal |
+|---|:---:|:---:|:---:|
+| **taperB2** — nominal optics, shaped 0.8→4.2 + 0.5 bump | 0.606 ± 0.014 | **95.8 ± 18.4** | **1.82×** |
+| taperC — shaped 0.82→4.08 + 0.45 bump, mild optics retune | **0.624 ± 0.018** | 103 ± 23 | 1.75× |
+| taperA — nominal optics, linear 1.0→3.5 | 0.609 ± 0.010 | 129 ± 32 | 1.36× |
+| nominal | 0.650 ± 0.010 | 187 ± 38 | 1.00× |
+
+`taperB2` beats taperA in **every seed** at the same transmission — 26 % lower
+mean exit emittance, matching the flat-wedge `brightE2`'s cooling (ε ≈ 100) at
+**T = 0.61 instead of 0.49** — and it changes *nothing* but the wedge profile
+(nominal fields, RF, and timing). It is now the recommended design:
+[`../../hfofo/optimized_taper.json`](../../hfofo/optimized_taper.json). `taperC`
+([`../../hfofo/optimized_taper_hiT.json`](../../hfofo/optimized_taper_hiT.json))
+trades a little cooling for T = 0.624 (96 % of nominal) via a mild optics
+retune. Raw artifacts in [`phaseT2/`](phaseT2/).
+
+*Caveat:* the exit-emittance estimator is noisy at 400 events (±20–25 %), so the
+brightness magnitudes carry that uncertainty; the transmission numbers are
+solid (±0.01–0.02). A ≥1500-event revalidation is the standing follow-up
+(blocked by container instability in this session). The shaped taper inherits
+the wedge engineering caveat (§7): late-channel wedges reach ~4.2× the design
+width, and the mid-channel bump adds up to +0.5× on top of the ramp there.
 
 ## 6b. Transmission and where the losses go
 
